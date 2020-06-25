@@ -1,0 +1,177 @@
+﻿<UserControl x:Class="GameLearnEnlish.UserControls.HomeUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GameLearnEnlish.UserControls"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="StyleImage" TargetType="Image">
+            <Setter Property="Stretch" Value="Uniform"/>
+        </Style>
+
+        <Style x:Key="AnnotationBtnStyle" TargetType="Grid">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="#70FFFFFF"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#CCFFFFFF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="Black">
+        <Image x:Name="imgBg_BF_vol1">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property="Source" Value="..\media\textures\global\Bg_BF_vol1.jpg"/>
+                    <Setter Property="Stretch" Value="Uniform"/>
+                </Style>
+            </Image.Style>
+        </Image>
+
+        <Grid x:Name="grdHome" Visibility="Visible" ShowGridLines="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.22*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.395*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="2" ShowGridLines="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.7*"/>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0" x:Name="grdToolbarMenu">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.093*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="0.345*"/>
+                    </Grid.RowDefinitions>
+                    <Grid  Grid.Row="1" ShowGridLines="False">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="31*"/>
+                            <ColumnDefinition Width="40*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="0.5*"/>
+                        </Grid.RowDefinitions>
+
+                        <Image x:Name="imgbtnMenu" Grid.Row="0" Margin="5" MouseDown="imgbtnMenu_MouseDown"  Cursor="Hand" Grid.ColumnSpan="2">
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Setter Property="Source" Value="..\media\textures\global\Bt_Menu.png"/>
+                                    <Setter Property="Stretch" Value="Uniform"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Source" Value="..\media\textures\global\Bt_Menu_over.png"/>
+                                            <Setter Property="Stretch" Value="Uniform"/>
+
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+
+                        <Image x:Name="imgbtnHelp" Grid.Row="1" Margin="5" MouseDown="imgbtnHelp_MouseDown" Cursor="Hand" Grid.ColumnSpan="2">
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Setter Property="Source" Value="..\media\textures\global\Bt_Help.png"/>
+                                    <Setter Property="Stretch" Value="Uniform"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Source" Value="..\media\textures\global\Bt_Help_over.png"/>
+                                            <Setter Property="Stretch" Value="Uniform"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+
+
+                        <Image x:Name="imgbtnNext" Grid.Row="2" Margin="5" MouseDown="imgbtnNext_MouseDown" Cursor="Hand" Grid.ColumnSpan="2">
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Setter Property="Source" Value="..\media\textures\global\Bt_next.png"/>
+                                    <Setter Property="Stretch" Value="Uniform"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Source" Value="..\media\textures\global\Bt_next_over.png"/>
+                                            <Setter Property="Stretch" Value="Uniform"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+
+                        <Image x:Name="imgbtnBack" Grid.Row="3" Margin="5" MouseDown="imgbtnBack_MouseDown"  Cursor="Hand" Grid.ColumnSpan="2">
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Setter Property="Source" Value="..\media\textures\global\Bt_back.png"/>
+                                    <Setter Property="Stretch" Value="Uniform"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Source" Value="..\media\textures\global\Bt_back_over.png"/>
+                                            <Setter Property="Stretch" Value="Uniform"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+
+                        <Image x:Name="imgbtnClose" Grid.Row="4" Margin="5" MouseDown="imgbtnClose_MouseDown" Cursor="Hand" Grid.ColumnSpan="2">
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Setter Property="Source" Value="..\media\textures\global\Bt_close.png"/>
+                                    <Setter Property="Stretch" Value="Uniform"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Source" Value="..\media\textures\global\Bt_close_over.png"/>
+                                            <Setter Property="Stretch" Value="Uniform"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Column="1" x:Name="grdVolume">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="6*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="7*"/>
+                    </Grid.RowDefinitions>
+
+                    <Image x:Name="imgVolume" Grid.Row="1" Margin="10" Cursor="Hand">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source" Value="..\media\textures\global\Volume_vertical_slider.png"/>
+                                <Setter Property="Stretch" Value="Uniform"/>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+
+
+                    <Image x:Name="imgVolumeBall" Grid.Row="1" Margin="10" Visibility="Hidden">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source" Value="..\media\textures\global\Volume_ball_slider.png"/>
+                                <Setter Property="Stretch" Value="Uniform"/>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="grdBackGroud" Background="Black" Opacity="0.3" Visibility="Hidden" Cursor="Arrow"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="093b0fcaf3e64f7d91a0c01030e9a2d6" Name="Diagram1">
+        <EntityTypeShape EntityType="EnglishGameModel.LookAndFind" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnglishGameModel.Painting" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnglishGameModel.Sentence" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnglishGameModel.sysdiagram" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnglishGameModel.Unit" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnglishGameModel.Word" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="EnglishGameModel.LookAndFindOfUnit" ManuallyRouted="false" />
+        <AssociationConnector Association="EnglishGameModel.PaintingOfUnit" ManuallyRouted="false" />
+        <AssociationConnector Association="EnglishGameModel.SentenceOfUnit" ManuallyRouted="false" />
+        <AssociationConnector Association="EnglishGameModel.WordOfUnit" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
