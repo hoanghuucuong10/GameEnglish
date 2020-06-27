@@ -25,11 +25,13 @@ namespace DAL
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Choice> Choices { get; set; }
+        public virtual DbSet<Concentration> Concentrations { get; set; }
         public virtual DbSet<LookAndFind> LookAndFinds { get; set; }
+        public virtual DbSet<Matching> Matchings { get; set; }
         public virtual DbSet<Painting> Paintings { get; set; }
-        public virtual DbSet<Sentence> Sentences { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Sorting> Sortings { get; set; }
+        public virtual DbSet<Storytime> Storytimes { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
-        public virtual DbSet<Word> Words { get; set; }
     }
 }

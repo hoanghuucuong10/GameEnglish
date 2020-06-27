@@ -65,7 +65,7 @@ namespace GameLearnEnlish.UserControls
         private MediaPlayer mediaPlayerVoidClickCard = new MediaPlayer();
         private MediaPlayer mediaPlayerVoiInCorrect = new MediaPlayer();
 
-        private List<Data.Word> lstWord = new List<Data.Word>();
+        private List<Data.Matching> lstWord = new List<Data.Matching>();
 
         private List<string> ListImgWord = new List<string>();//danh sách hình ảnh của từ
         private List<int> ListImgSort = new List<int>();//vị trí của 3 bức ảnh.
@@ -123,7 +123,7 @@ namespace GameLearnEnlish.UserControls
         //Khởi tạo list câu hỏi và câu trả lời
         public void CreateQuestionAndAnswer()
         {
-            lstWord = new WordBLL().GetWordsOfUnit(Unit);
+            lstWord = new MatchingBLL().GetMatchingsOfUnit(Unit);
             ListImgWord.Clear();
             ListImgSort.Clear();
 

@@ -12,10 +12,10 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Sentence
+    public partial class Storytime
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Sentence()
+        public Storytime()
         {
             this.Units = new HashSet<Unit>();
         }

@@ -53,7 +53,7 @@ namespace GameLearnEnlish.UserControls
         private Uri ImgInCorrect = new Uri(@"..\..\media\textures\multipleChoice\wrong.png", UriKind.Relative);//image khi chọn câu trả lời sai
 
 
-        private List<Data.Word> lstWord = new List<Data.Word>();
+        private List<Data.MultipleChoice> lstWord = new List<Data.MultipleChoice>();
         private List<string> ListImgWord = new List<string>();//danh sách hình ảnh của từ
         private List<int> ListImgSort = new List<int>();//vị trí của 3 bức ảnh.
         private List<int> ListVoidSort = new List<int>();//vị trí của 3 âm thanh.
@@ -127,7 +127,7 @@ namespace GameLearnEnlish.UserControls
         {
             this.Dispatcher.Invoke(() =>
             {
-                lstWord = new WordBLL().GetWordsOfUnit(Unit);
+                lstWord = new MultipleChoiceBLL().GetMultipleChoicesOfUnit(Unit);
                 ListImgWord.Clear();
                 ListImgSort.Clear();
                 mediaPlayerVoidCorrect.Stop();

@@ -4,17 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="093b0fcaf3e64f7d91a0c01030e9a2d6" Name="Diagram1">
-        <EntityTypeShape EntityType="EnglishGameModel.LookAndFind" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EnglishGameModel.Painting" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EnglishGameModel.Sentence" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EnglishGameModel.sysdiagram" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EnglishGameModel.Unit" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EnglishGameModel.Word" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+      <Diagram DiagramId="b9d6cb62c83741afac8e10e0cce40e43" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="EnglishGameModel.Choice" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnglishGameModel.Concentration" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnglishGameModel.LookAndFind" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnglishGameModel.Matching" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnglishGameModel.Painting" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnglishGameModel.Sorting" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnglishGameModel.Storytime" Width="1.5" PointX="0.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnglishGameModel.Unit" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="EnglishGameModel.ChoiceOfUnit" ManuallyRouted="false" />
+        <AssociationConnector Association="EnglishGameModel.ConcentrationOfUnit" ManuallyRouted="false" />
         <AssociationConnector Association="EnglishGameModel.LookAndFindOfUnit" ManuallyRouted="false" />
+        <AssociationConnector Association="EnglishGameModel.MatchingOfUnit" ManuallyRouted="false" />
         <AssociationConnector Association="EnglishGameModel.PaintingOfUnit" ManuallyRouted="false" />
-        <AssociationConnector Association="EnglishGameModel.SentenceOfUnit" ManuallyRouted="false" />
-        <AssociationConnector Association="EnglishGameModel.WordOfUnit" ManuallyRouted="false" />
+        <AssociationConnector Association="EnglishGameModel.SortingOfUnit" ManuallyRouted="false" />
+        <AssociationConnector Association="EnglishGameModel.StorytimeOfUnit" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

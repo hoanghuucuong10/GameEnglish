@@ -6,19 +6,17 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-   public class Sentence
+   public class Matching
     {
         public int Id { get; set; }
         public string Image { get; set; }
-        public string Sound { get; set; }
-        public string Text { get; set; }
+        public string Voice { get; set; }
 
-        public Sentence(int Id, string Image, string Sound,string Text)
+        public Matching(int Id, string Image, string Voice)
         {
             this.Id = Id;
             this.Image = Image;
-            this.Sound = Sound;
-            this.Text = Text;
+            this.Voice = Voice;
         }
     }
 }

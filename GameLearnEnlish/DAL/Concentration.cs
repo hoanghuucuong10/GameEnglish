@@ -12,10 +12,10 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Word
+    public partial class Concentration
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Word()
+        public Concentration()
         {
             this.Units = new HashSet<Unit>();
         }

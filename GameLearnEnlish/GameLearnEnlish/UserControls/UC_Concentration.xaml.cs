@@ -30,7 +30,7 @@ namespace GameLearnEnlish.UserControls
         private readonly string VoiceInCorrect = @"..\..\media\audio\concentration\wrong.mp3";//âm khi chọn 2 thẻ khác nhau
         private readonly string LinkImgCloseCard = @"..\..\media\textures\concentration\card_back.png";
 
-        private List<Data.Word> lstWord = new List<Data.Word>();
+        private List<Data.Concentration> lstWord = new List<Data.Concentration>();
 
         private List<string> ListImgWord = new List<string>();//danh sách hình ảnh của từ
         private List<int> ListImgSort = new List<int>();//vị trí của 3 bức ảnh.
@@ -156,7 +156,7 @@ namespace GameLearnEnlish.UserControls
             hasOpened = new bool[6] { false, false, false, false, false, false };
             isOpen = false;
 
-            lstWord = new WordBLL().GetWordsOfUnit(Unit);
+            lstWord = new ConcentrationBLL().GetWordsOfUnit(Unit);
 
             #region media
             //ListVoiceWord = new List<string>()

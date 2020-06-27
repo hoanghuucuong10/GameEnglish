@@ -17,22 +17,31 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Unit()
         {
+            this.Choices = new HashSet<Choice>();
+            this.Concentrations = new HashSet<Concentration>();
             this.LookAndFinds = new HashSet<LookAndFind>();
+            this.Matchings = new HashSet<Matching>();
             this.Paintings = new HashSet<Painting>();
-            this.Sentences = new HashSet<Sentence>();
-            this.Words = new HashSet<Word>();
+            this.Sortings = new HashSet<Sorting>();
+            this.Storytimes = new HashSet<Storytime>();
         }
     
         public int Id { get; set; }
         public Nullable<int> Number { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Choice> Choices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Concentration> Concentrations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LookAndFind> LookAndFinds { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Matching> Matchings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Painting> Paintings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sentence> Sentences { get; set; }
+        public virtual ICollection<Sorting> Sortings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Word> Words { get; set; }
+        public virtual ICollection<Storytime> Storytimes { get; set; }
     }
 }

@@ -48,10 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MatchingBLL.cs" />
+    <Compile Include="MultipleChoiceBLL.cs" />
     <Compile Include="PaintingBLL.cs" />
     <Compile Include="LookAndFindBLL.cs" />
-    <Compile Include="SentenceBLL.cs" />
-    <Compile Include="WordBLL.cs" />
+    <Compile Include="SortingBLL.cs" />
+    <Compile Include="StorytimeBLL.cs" />
+    <Compile Include="ConcentrationBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

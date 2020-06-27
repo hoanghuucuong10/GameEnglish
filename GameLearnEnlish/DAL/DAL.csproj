@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Choice.cs">
+      <DependentUpon>EnglishGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concentration.cs">
+      <DependentUpon>EnglishGameDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="EnglishGameDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -68,20 +74,20 @@
     <Compile Include="LookAndFind.cs">
       <DependentUpon>EnglishGameDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Matching.cs">
+      <DependentUpon>EnglishGameDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Painting.cs">
       <DependentUpon>EnglishGameDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sentence.cs">
+    <Compile Include="Sorting.cs">
       <DependentUpon>EnglishGameDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagram.cs">
+    <Compile Include="Storytime.cs">
       <DependentUpon>EnglishGameDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Unit.cs">
-      <DependentUpon>EnglishGameDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Word.cs">
       <DependentUpon>EnglishGameDB.tt</DependentUpon>
     </Compile>
   </ItemGroup>
