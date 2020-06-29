@@ -781,6 +781,11 @@ namespace GameLearnEnlish.UserControls
             {
                 if (ListImgSort[0] == ListVoidSort[0])
                 {
+                    var endPoint = imgNode1a.TransformToAncestor(grdUC_Matching)
+                            .Transform(new Point(0, 0)); ;
+                    line.X2 = endPoint.X + 18;
+                    line.Y2 = endPoint.Y + 18;
+
                     line = new Line();
                     grdUC_Matching.Children.Add(line);
                     IsHiddenAnswer("Answer1");
@@ -846,6 +851,10 @@ namespace GameLearnEnlish.UserControls
             {
                 if (ListImgSort[0] == ListVoidSort[1])
                 {
+                    var endPoint = imgNode1a.TransformToAncestor(grdUC_Matching)
+                           .Transform(new Point(0, 0)); ;
+                    line.X2 = endPoint.X + 18;
+                    line.Y2 = endPoint.Y + 18;
                     line = new Line();
 
                     grdUC_Matching.Children.Add(line);
@@ -902,6 +911,10 @@ namespace GameLearnEnlish.UserControls
             {
                 if (ListImgSort[0] == ListVoidSort[2])
                 {
+                    var endPoint = imgNode1a.TransformToAncestor(grdUC_Matching)
+                           .Transform(new Point(0, 0)); ;
+                    line.X2 = endPoint.X + 18;
+                    line.Y2 = endPoint.Y + 18;
                     line = new Line();
                     grdUC_Matching.Children.Add(line);
 
@@ -982,6 +995,10 @@ namespace GameLearnEnlish.UserControls
             {
                 if (ListImgSort[1] == ListVoidSort[0])
                 {
+                    var endPoint = imgNode2a.TransformToAncestor(grdUC_Matching)
+                              .Transform(new Point(0, 0)); ;
+                    line.X2 = endPoint.X + 18;
+                    line.Y2 = endPoint.Y + 18;
                     line = new Line();
 
                     grdUC_Matching.Children.Add(line);
@@ -1038,6 +1055,10 @@ namespace GameLearnEnlish.UserControls
             {
                 if (ListImgSort[1] == ListVoidSort[1])
                 {
+                    var endPoint = imgNode2a.TransformToAncestor(grdUC_Matching)
+                              .Transform(new Point(0, 0)); ;
+                    line.X2 = endPoint.X + 18;
+                    line.Y2 = endPoint.Y + 18;
                     line = new Line();
                     grdUC_Matching.Children.Add(line);
                     IsHiddenAnswer("Answer2");
@@ -1095,6 +1116,10 @@ namespace GameLearnEnlish.UserControls
             {
                 if (ListImgSort[1] == ListVoidSort[2])
                 {
+                    var endPoint = imgNode2a.TransformToAncestor(grdUC_Matching)
+                              .Transform(new Point(0, 0)); ;
+                    line.X2 = endPoint.X + 18;
+                    line.Y2 = endPoint.Y + 18;
                     line = new Line();
 
                     grdUC_Matching.Children.Add(line);
@@ -1175,6 +1200,10 @@ namespace GameLearnEnlish.UserControls
             {
                 if (ListImgSort[2] == ListVoidSort[0])
                 {
+                    var endPoint = imgNode3a.TransformToAncestor(grdUC_Matching)
+                           .Transform(new Point(0, 0)); ;
+                    line.X2 = endPoint.X + 18;
+                    line.Y2 = endPoint.Y + 18;
                     line = new Line();
 
                     grdUC_Matching.Children.Add(line);
@@ -1231,6 +1260,10 @@ namespace GameLearnEnlish.UserControls
             {
                 if (ListImgSort[2] == ListVoidSort[1])
                 {
+                    var endPoint = imgNode3a.TransformToAncestor(grdUC_Matching)
+                              .Transform(new Point(0, 0)); ;
+                    line.X2 = endPoint.X + 18;
+                    line.Y2 = endPoint.Y + 18;
                     line = new Line();
 
                     grdUC_Matching.Children.Add(line);
@@ -1287,6 +1320,10 @@ namespace GameLearnEnlish.UserControls
             {
                 if (ListImgSort[2] == ListVoidSort[2])
                 {
+                    var endPoint = imgNode3a.TransformToAncestor(grdUC_Matching)
+                              .Transform(new Point(0, 0)); ;
+                    line.X2 = endPoint.X + 18;
+                    line.Y2 = endPoint.Y + 18;
                     line = new Line();
                     grdUC_Matching.Children.Add(line);
 

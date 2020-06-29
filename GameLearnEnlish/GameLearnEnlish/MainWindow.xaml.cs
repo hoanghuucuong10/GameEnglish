@@ -23,24 +23,15 @@ namespace GameLearnEnlish
     /// </summary>
     public partial class MainWindow : Window
     {
-        HomeUC homeUC;
-        //MenuUC menuUC;
-        //BoxSubMenuUC boxSubMenuUC;
-        //ListActiveUC listActive;
-        //Menu_GlobeUC menu_GlobeUC;
-
         public MainWindow()
         {
             InitializeComponent();
             Global.Instance.WindowMain = this;
-            homeUC = new HomeUC();
-           
-            grdHomeUC.Children.Add(homeUC);
-            //grdMenuUC.Children.Add(menuUC);
-            //grdBoxSubMenuUC.Children.Add(boxSubMenuUC);
-            //grdListActiveUC.Children.Add(listActive);
-            //grdMenu_GlobeUC.Children.Add(menu_GlobeUC);
+            MediaBank.getInstance();
+
+
+            LoadingUC loadUC = new LoadingUC(this);
+            grdHomeUC.Children.Add(loadUC);
         }
-       
     }
 }

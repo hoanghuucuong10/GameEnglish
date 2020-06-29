@@ -83,13 +83,17 @@
                     </Image.Effect>
                 </Image>
 
-                <Image x:Name="imgNode1a" Source="..\media\textures\matching\node.png" Stretch="Uniform" Grid.Row="0" Grid.Column="4" MouseEnter="Answer1_MouseEnter" MouseLeave="Answer1_MouseLeave" MouseLeftButtonDown="Answer1_MouseLeftButtonDown"/>
-                <Image x:Name="imgNode2a" Source="..\media\textures\matching\node.png" Stretch="Uniform" Grid.Row="1" Grid.Column="4" MouseEnter="Answer2_MouseEnter" MouseLeave="Answer2_MouseLeave" MouseLeftButtonDown="Answer2_MouseLeftButtonDown"/>
-                <Image x:Name="imgNode3a" Source="..\media\textures\matching\node.png" Stretch="Uniform" Grid.Row="2" Grid.Column="4" MouseEnter="Answer3_MouseEnter" MouseLeave="Answer3_MouseLeave" MouseLeftButtonDown="Answer3_MouseLeftButtonDown"/>
-                <!--<Image x:Name="Votay" Grid.RowSpan="3" Grid.ColumnSpan="7" Visibility="Visible" Stretch="Fill" gif:AnimationBehavior.SourceUri="..\media\textures\global\votay256x256.gif"   ></Image>-->
-
+                <Grid  Grid.Row="0" Grid.Column="4" VerticalAlignment="Center">
+                    <Image x:Name="imgNode1a" Source="..\media\textures\matching\node.png" Stretch="Uniform" MouseEnter="Answer1_MouseEnter" MouseLeave="Answer1_MouseLeave" MouseLeftButtonDown="Answer1_MouseLeftButtonDown"/>
+                </Grid>
+                <Grid  Grid.Row="1" Grid.Column="4" VerticalAlignment="Center">
+                    <Image x:Name="imgNode2a" Source="..\media\textures\matching\node.png" Stretch="Uniform" Grid.Row="1" Grid.Column="4" MouseEnter="Answer2_MouseEnter" MouseLeave="Answer2_MouseLeave" MouseLeftButtonDown="Answer2_MouseLeftButtonDown"/>
+                </Grid>
+                <Grid  Grid.Row="2" Grid.Column="4" VerticalAlignment="Center">
+                    <Image x:Name="imgNode3a" Source="..\media\textures\matching\node.png" Stretch="Uniform" Grid.Row="2" Grid.Column="4" MouseEnter="Answer3_MouseEnter" MouseLeave="Answer3_MouseLeave" MouseLeftButtonDown="Answer3_MouseLeftButtonDown"/>
+                </Grid>
             </Grid>
         </Grid>
     </materialDesign:TransitioningContent>
-    
+
 </UserControl>

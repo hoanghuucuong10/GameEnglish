@@ -230,6 +230,10 @@ namespace GameLearnEnlish
         }
         public static MediaBank getInstance()
         {
+            if(instance==null)
+            {
+                instance = new MediaBank();
+            }
             return instance;
         }
 

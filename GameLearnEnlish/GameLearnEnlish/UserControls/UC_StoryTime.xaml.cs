@@ -63,8 +63,9 @@ namespace GameLearnEnlish.UserControls
             mediaDescription.Open(new Uri(@"..\..\media\audio\storytime\description.mp3", UriKind.Relative));
             mediaDescription.MediaEnded += MediaDescription_MediaEnded;
             InitializeComponent();
-            lstSentence = new StorytimeBLL().GetSentencesOfUnit(Unit);
 
+            #region GetData
+            lstSentence = new StorytimeBLL().GetSentencesOfUnit(Unit);
             IndexMedia = 0;
             foreach (Storytime x in lstSentence)
             {
@@ -75,6 +76,7 @@ namespace GameLearnEnlish.UserControls
                 mediaSoundWord.Add(media);
                 lstText.Add(x.Text.Trim());
             }
+            #endregion
 
             LoadSlideImage();
 
@@ -224,6 +226,7 @@ namespace GameLearnEnlish.UserControls
             StopMediaVoid();
             IsFullSoundClick = true;
             IndexMedia = 0;
+
             mediaSoundWord[0].Play();
             ChangeLineFocus(0);
             ShowBorderImageFocus(0);
@@ -482,16 +485,21 @@ namespace GameLearnEnlish.UserControls
         private void Img_MouseUp(object sender, MouseButtonEventArgs e)
         {
             string strImageSource = (sender as Image).Source.ToString();
+            #region GetIndexImgClick
+            int s = 0;
             for (int i = 0; i < Images.Count; i++)
             {
                 if (Images[i].Source.ToString() == strImageSource)
                 {
-                    ShowBorderImageFocus(i);
-                    PlayVoidIndex(i);
-                    return;
+                    s = i;
+                    break;
                 }
             }
+            #endregion
+            ShowBorderImageFocus(s);
+            PlayVoidIndex(s);
         }
+
 
         #endregion
         public void ShowBorderImageFocus(int index)

@@ -110,7 +110,6 @@ namespace GameLearnEnlish.UserControls
             }
             catch (Exception)
             {
-
                 MessageBox.Show("Lỗi khi khởi tạo UserControl!");
             }
         }

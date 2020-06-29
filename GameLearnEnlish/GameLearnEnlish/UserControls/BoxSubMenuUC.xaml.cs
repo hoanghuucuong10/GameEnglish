@@ -79,18 +79,6 @@ namespace GameLearnEnlish.UserControls
 
         public void StopVoid()//Tắt âm thanh
         {
-            //MenuUC.menuUC.StopVoid();
-
-            //Tắt các âm khi mở menu
-            //if (UC_MultipleChoice.uC_MultipleChoice != null)
-            //{
-            //    UC_MultipleChoice.uC_MultipleChoice.StopVoid();
-            //}
-            //if (UC_Matching.uC_Matching != null)
-            //{
-            //    UC_Matching.uC_Matching.StopVoid();
-            //}
-
             if (MenuUC.menuUC != null)
             {
                 MenuUC.menuUC.StopVoid();
@@ -108,6 +96,7 @@ namespace GameLearnEnlish.UserControls
         }
         public void ChangeUnit(string NameBtn) // Đổi tiêu đề khi nhấn vào từng nút unit ở Menu
         {
+            StopVoid();
             var nameBtn = NameBtn;
 
             if (nameBtn != "")
@@ -329,6 +318,7 @@ namespace GameLearnEnlish.UserControls
 
         public void UnitUCActivity(Unit unit, string Activity)//Gọi các UC activity theo từng Unit khi MouseDown lable
         {
+            StopVoid();
             //Xóa UC cũ
             Global.Instance.WindowMain.grdUC_Activity.Children.Clear();
             switch (Activity)
@@ -387,6 +377,7 @@ namespace GameLearnEnlish.UserControls
         }
         private void lblActivity_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            StopVoid();
             var nameTbl = sender as Label;
 
             if (nameTbl != null)

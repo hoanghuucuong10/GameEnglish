@@ -98,10 +98,6 @@ namespace GameLearnEnlish.UserControls
 
         }
 
-        public void Init()
-        {
-
-        }
         public void AddStoryboard()
         {
             #region {thêm storyboard lật hình và sự kiện mouseDown}
