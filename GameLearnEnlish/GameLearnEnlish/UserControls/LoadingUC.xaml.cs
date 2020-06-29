@@ -28,7 +28,8 @@ namespace GameLearnEnlish.UserControls
          
             InitializeComponent();
             media.Source = new Uri(@"..\..\Images\load2.gif", UriKind.Relative);
-            lab.Visibility = Visibility.Visible;
+         //   medialoading.Source = new Uri(@"..\..\Images\gifloading.gif", UriKind.Relative);
+           // lab.Visibility = Visibility.Visible;
             Loading();
         }
 
@@ -44,7 +45,6 @@ namespace GameLearnEnlish.UserControls
         {
             timer.Stop();
             media.Visibility = Visibility.Hidden;
-            lab.Visibility = Visibility.Hidden;
 
             HomeUC homeUC = new HomeUC();
 

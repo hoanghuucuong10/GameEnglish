@@ -4,16 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GameLearnEnlish.UserControls"
+             xmlns:gif ="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
              mc:Ignorable="d" 
            >
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
         
         <StackPanel>
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" Height="200">
+                <Image Source="/Images/image.jpg" Height="150" />
+            </Grid>
             <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" Height="200">
                 <MediaElement x:Name="media" MediaEnded="MediaElement_MediaEnded" UnloadedBehavior="Manual" Stretch="Fill"/>
             </Grid>
-            <Grid>
-                <Image x:Name="lab" Visibility="Hidden" Source="/Images/load1.jpg" Width="590" Height="233" Stretch="Fill" />
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Width="400" Height="400">
+                <Image x:Name="medialoading" Stretch="Fill"  Visibility="Visible" gif:AnimationBehavior.SourceUri="/Images/gifloading.gif"></Image>
             </Grid>
         </StackPanel>
     </Grid>
