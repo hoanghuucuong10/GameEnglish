@@ -1,7 +1,10 @@
-﻿using GameLearnEnlish.Model;
+﻿using AudioSwitcher.AudioApi.CoreAudio;
+using GameLearnEnlish.Model;
 using GameLearnEnlish.Utility;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -21,7 +24,7 @@ namespace GameLearnEnlish.UserControls
     /// <summary>
     /// Interaction logic for Home.xaml
     /// </summary>
-    public partial class HomeUC : UserControl
+    public partial class HomeUC : UserControl, INotifyPropertyChanged
     {
         public static HomeUC homeUC = null;
         private MenuUC ucMenu;
@@ -32,13 +35,14 @@ namespace GameLearnEnlish.UserControls
         private BackgroudOpacityUC backgroudOpacity;
         private MediaPlayer mplayerClose = new MediaPlayer();
         private Uri uriClose;
-        //public static SelectElementUC ButtonSelect;
+        public static UserControl userControl = null;
+
 
         public HomeUC()
         {
             homeUC = this;
             InitializeComponent();
-
+            this.DataContext = this;
             grdHome.Visibility = Visibility.Visible;
 
             #region [Hình ảnh]
@@ -61,6 +65,11 @@ namespace GameLearnEnlish.UserControls
                 MenuUC.menuUC.IsVisibleButtonClick("imgBt_unit_1");
                 Global.Instance.UnitSelect = Unit._unit1;
             }
+
+            //Set volume img
+            Delta = defaultPlaybackDevice.Volume*3;
+            RaisePropertyChanged("VolumnValue");
+
         }
 
         public void StopVoid()//Tắt âm thanh
@@ -70,7 +79,6 @@ namespace GameLearnEnlish.UserControls
         private void imgbtnMenu_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //Tắt các âm khi mở menu
-
 
             Global.Instance.WindowMain.grdBackgroudOpacityUC.Children.Add(backgroudOpacity);//Khởi tạo UC BackgroudOpacityUC
             Global.Instance.WindowMain.grdMenuUC.Children.Clear();
@@ -163,7 +171,37 @@ namespace GameLearnEnlish.UserControls
                     break;
             }
 
-
+            if (userControl != null)
+            {
+                if (userControl is UC_Concentration)
+                {
+                    (userControl as UC_Concentration).StopAllMedia();
+                }
+                else if (userControl is UC_Matching)
+                {
+                    (userControl as UC_Matching).StopAllMedia();
+                }
+                else if (userControl is UC_LookAndFind)
+                {
+                    (userControl as UC_LookAndFind).StopAllMedia();
+                }
+                else if (userControl is UC_MultipleChoice)
+                {
+                    (userControl as UC_MultipleChoice).StopAllMedia();
+                }
+                else if (userControl is UC_Painting)
+                {
+                    (userControl as UC_Painting).StopAllMedia();
+                }
+                else if (userControl is UC_Sorting)
+                {
+                    (userControl as UC_Sorting).StopAllMedia();
+                }
+                else if (userControl is UC_StoryTime)
+                {
+                    (userControl as UC_StoryTime).StopAllMedia();
+                }
+            }
         }
 
         private void imgbtnHelp_MouseDown(object sender, MouseButtonEventArgs e)
@@ -303,5 +341,62 @@ namespace GameLearnEnlish.UserControls
                 });
             }
         }
+
+        #region Volume
+        private double Delta = 0;
+        public double VolumnValue
+        {
+            get { return Delta; }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void RaisePropertyChanged(string prop)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+        private void imgBallVolume_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            imgBallVolume.CaptureMouse();
+            moving = true;
+        }
+        private bool moving = false;
+        private void imgBallVolume_MouseMove(object sender, MouseEventArgs e)
+        {
+
+            if (moving)
+            {
+                
+                Image l = e.Source as Image;
+
+                Point p = e.GetPosition(CanVasVol);
+
+                Delta = p.Y;
+
+                if (Delta > 0)
+                    Delta = 0;
+                if (Delta < 300)
+                    Delta = 300;
+
+           
+                RaisePropertyChanged("VolumnValue");
+            }
+
+
+
+          
+        }
+        CoreAudioDevice defaultPlaybackDevice = new CoreAudioController().DefaultPlaybackDevice;
+        private void imgBallVolume_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            moving = false;
+            Image l = e.Source as Image;
+
+            double vol = Delta / 3;
+
+            
+            defaultPlaybackDevice.Volume = vol;
+            l.ReleaseMouseCapture();
+        }
+        #endregion
     }
 }

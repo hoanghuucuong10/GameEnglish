@@ -88,7 +88,7 @@ namespace GameLearnEnlish.UserControls
             InitializeComponent();
             Unit = unit;
             StartApp();//Khong thao tác khi đang khởi động
-            
+
             CreateQuestionAndAnswer();//Khởi tạo câu hỏi và câu trả lời
 
             mediaPlayerVoidStart.Open(new Uri(VoidStart, UriKind.Relative));//Âm thanh title
@@ -102,7 +102,7 @@ namespace GameLearnEnlish.UserControls
 
             mediaPlayerVoiceDescription.Open(new Uri(VoiceDescription, UriKind.Relative));
             mediaPlayerVoiceDescription.Stop();
-            
+
             Task.Run(() =>
             {
                 Thread.Sleep(2000);
@@ -1394,5 +1394,19 @@ namespace GameLearnEnlish.UserControls
         }
 
         #endregion
+        public void StopAllMedia()
+        {
+
+
+            mediaPlayerVoid1.Stop();
+            mediaPlayerVoid2.Stop();
+            mediaPlayerVoid3.Stop();
+            mediaPlayerVoidStart.Stop();
+            mediaPlayerVoiceDescription.Stop();
+
+            mediaPlayerVoidCorrect.Stop();
+            mediaPlayerVoidClickCard.Stop();
+            mediaPlayerVoiInCorrect.Stop();
+        }
     }
 }

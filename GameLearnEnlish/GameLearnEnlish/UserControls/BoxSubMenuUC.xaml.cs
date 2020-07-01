@@ -1,4 +1,5 @@
-﻿using GameLearnEnlish.Model;
+﻿using BLL;
+using GameLearnEnlish.Model;
 using GameLearnEnlish.Utility;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace GameLearnEnlish.UserControls
         public static BoxSubMenuUC boxSubMenuUC = null;
 
         #region [Âm thanh các lable]
+        List<Data.Unit> units = new List<Data.Unit>();
         MediaPlayer mplayer1 = new MediaPlayer();
         MediaPlayer mplayer2 = new MediaPlayer();
         MediaPlayer mplayer3 = new MediaPlayer();
@@ -52,25 +54,26 @@ namespace GameLearnEnlish.UserControls
             boxSubMenuUC = this;
             InitializeComponent();
 
+            units = (new UnitBLL()).GetUnits();
             #region [Âm thanh các unit]
-            mplayer1.Open(new Uri(@"..\..\media\audio\global\Activity_1.mp3", UriKind.Relative));
-            mplayer2.Open(new Uri(@"..\..\media\audio\global\Activity_2.mp3", UriKind.Relative));
-            mplayer3.Open(new Uri(@"..\..\media\audio\global\Activity_3.mp3", UriKind.Relative));
-            mplayer4.Open(new Uri(@"..\..\media\audio\global\Activity_4.mp3", UriKind.Relative));
-            mplayer5.Open(new Uri(@"..\..\media\audio\global\Activity_5.mp3", UriKind.Relative));
-            mplayer6.Open(new Uri(@"..\..\media\audio\global\Activity_6.mp3", UriKind.Relative));
-            mplayer7.Open(new Uri(@"..\..\media\audio\global\Activity_9.mp3", UriKind.Relative));
+            mplayer1.Open(new Uri(units[0].VoiceTitle, UriKind.Relative));
+            mplayer2.Open(new Uri(units[1].VoiceTitle, UriKind.Relative));
+            mplayer3.Open(new Uri(units[2].VoiceTitle, UriKind.Relative));
+            mplayer4.Open(new Uri(units[3].VoiceTitle, UriKind.Relative));
+            mplayer5.Open(new Uri(units[4].VoiceTitle, UriKind.Relative));
+            mplayer6.Open(new Uri(units[5].VoiceTitle, UriKind.Relative));
+            mplayer7.Open(new Uri(units[6].VoiceTitle, UriKind.Relative));
             #endregion
 
             #region [Hình ảnh các Menu_Globe]
-            uriImg1 = new Uri(@"\media\textures\global\Menu_Globe_U1.png", UriKind.Relative);
-            uriImg2 = new Uri(@"\media\textures\global\Menu_Globe_U2.png", UriKind.Relative);
-            uriImg3 = new Uri(@"\media\textures\global\Menu_Globe_U3.png", UriKind.Relative);
-            uriImg4 = new Uri(@"\media\textures\global\Menu_Globe_U4.png", UriKind.Relative);
-            uriImg5 = new Uri(@"\media\textures\global\Menu_Globe_U5.png", UriKind.Relative);
-            uriImg6 = new Uri(@"\media\textures\global\Menu_Globe_U6.png", UriKind.Relative);
-            uriImg7 = new Uri(@"\media\textures\global\Menu_Globe_U7.png", UriKind.Relative);
-            uriImg8 = new Uri(@"\media\textures\global\Menu_Globe_U8.png", UriKind.Relative);
+            uriImg1 = new Uri(units[0].Image, UriKind.Relative);
+            uriImg2 = new Uri(units[1].Image, UriKind.Relative);
+            uriImg3 = new Uri(units[2].Image, UriKind.Relative);
+            uriImg4 = new Uri(units[3].Image, UriKind.Relative);
+            uriImg5 = new Uri(units[4].Image, UriKind.Relative);
+            uriImg6 = new Uri(units[5].Image, UriKind.Relative);
+            uriImg7 = new Uri(units[6].Image, UriKind.Relative);
+            uriImg8 = new Uri(units[7].Image, UriKind.Relative);
             uriImgAs = new Uri(@"\media\textures\global\Menu_Globe_U9.png", UriKind.Relative);
             uriImgPhonics = new Uri(@"\media\textures\global\Menu_Globe_U10.png", UriKind.Relative);
             #endregion
@@ -106,14 +109,14 @@ namespace GameLearnEnlish.UserControls
                     case "imgBt_unit_1":
                         {
                             ButtonSelect = SelectElementUC._Bt_unit;//Nút nhấn là unit
-                            lblTheme.Content = "My Class";
+                            lblTheme.Content = units[0].Title;
                             imgMenu_Globe_U.Source = new BitmapImage(uriImg1);//đổi hình ảnh menu globe
                             break;
                         }
                     case "imgBt_unit_2":
                         {
                             ButtonSelect = SelectElementUC._Bt_unit;//Nút nhấn là unit
-                            lblTheme.Content = "My Body";
+                            lblTheme.Content = units[1].Title;
 
                             imgMenu_Globe_U.Source = new BitmapImage(uriImg2);
                             break;
@@ -121,7 +124,7 @@ namespace GameLearnEnlish.UserControls
                     case "imgBt_unit_3":
                         {
                             ButtonSelect = SelectElementUC._Bt_unit;//Nút nhấn là unit
-                            lblTheme.Content = "My Family";
+                            lblTheme.Content = units[2].Title;
 
                             imgMenu_Globe_U.Source = new BitmapImage(uriImg3);
                             break;
@@ -129,7 +132,7 @@ namespace GameLearnEnlish.UserControls
                     case "imgBt_unit_4":
                         {
                             ButtonSelect = SelectElementUC._Bt_unit;//Nút nhấn là unit
-                            lblTheme.Content = "My Toys";
+                            lblTheme.Content = units[3].Title;
 
                             imgMenu_Globe_U.Source = new BitmapImage(uriImg4);
                             break;
@@ -137,7 +140,7 @@ namespace GameLearnEnlish.UserControls
                     case "imgBt_unit_5":
                         {
                             ButtonSelect = SelectElementUC._Bt_unit;//Nút nhấn là unit
-                            lblTheme.Content = "My Lunch";
+                            lblTheme.Content = units[4].Title;
 
                             imgMenu_Globe_U.Source = new BitmapImage(uriImg5);
                             break;
@@ -145,7 +148,7 @@ namespace GameLearnEnlish.UserControls
                     case "imgBt_unit_6":
                         {
                             ButtonSelect = SelectElementUC._Bt_unit;//Nút nhấn là unit
-                            lblTheme.Content = "My Clothes";
+                            lblTheme.Content = units[5].Title;
 
                             imgMenu_Globe_U.Source = new BitmapImage(uriImg6);
                             break;
@@ -153,7 +156,7 @@ namespace GameLearnEnlish.UserControls
                     case "imgBt_unit_7":
                         {
                             ButtonSelect = SelectElementUC._Bt_unit;//Nút nhấn là unit
-                            lblTheme.Content = "Animals";
+                            lblTheme.Content = units[6].Title;
 
                             imgMenu_Globe_U.Source = new BitmapImage(uriImg7);
                             break;
@@ -161,7 +164,7 @@ namespace GameLearnEnlish.UserControls
                     case "imgBt_unit_8":
                         {
                             ButtonSelect = SelectElementUC._Bt_unit;//Nút nhấn là unit
-                            lblTheme.Content = "My World";
+                            lblTheme.Content = units[7].Title;
 
                             imgMenu_Globe_U.Source = new BitmapImage(uriImg8);
                             break;
@@ -252,7 +255,6 @@ namespace GameLearnEnlish.UserControls
                             mplayer7.Play();//Phat âm lable
                             break;
                         }
-
                     default:
                         break;
                 }
@@ -328,12 +330,14 @@ namespace GameLearnEnlish.UserControls
                         //Add uc vào main
                         UC_Concentration UC_Activity = new UC_Concentration((int)unit);
                         Global.Instance.WindowMain.grdUC_Activity.Children.Add(UC_Activity); //Gọi UC với đối số truyền vào là 1
+                        HomeUC.userControl = UC_Activity;
                         break;
                     }
                 case "lblActivity2":
                     {
                         UC_Matching UC_Activity = new UC_Matching((int)unit);
                         Global.Instance.WindowMain.grdUC_Activity.Children.Add(UC_Activity);
+                        HomeUC.userControl = UC_Activity;
                         break;
                     }
                 case "lblActivity3":
@@ -341,6 +345,7 @@ namespace GameLearnEnlish.UserControls
                         //Add uc vào main
                         UC_Sorting UC_Activity = new UC_Sorting((int)unit);
                         Global.Instance.WindowMain.grdUC_Activity.Children.Add(UC_Activity);
+                        HomeUC.userControl = UC_Activity;
                         break;
                     }
                 case "lblActivity4":
@@ -348,6 +353,7 @@ namespace GameLearnEnlish.UserControls
                         //Add uc vào main
                         UC_MultipleChoice UC_Activity = new UC_MultipleChoice((int)unit);
                         Global.Instance.WindowMain.grdUC_Activity.Children.Add(UC_Activity);
+                        HomeUC.userControl = UC_Activity;
                         break;
                     }
                 case "lblActivity5":
@@ -355,6 +361,7 @@ namespace GameLearnEnlish.UserControls
                         //Add uc vào main
                         UC_Painting UC_Activity = new UC_Painting((int)unit);
                         Global.Instance.WindowMain.grdUC_Activity.Children.Add(UC_Activity);
+                        HomeUC.userControl = UC_Activity;
                         break;
                     }
                 case "lblActivity6":
@@ -362,6 +369,7 @@ namespace GameLearnEnlish.UserControls
                         //Add uc vào main
                         UC_StoryTime UC_Activity = new UC_StoryTime((int)unit);
                         Global.Instance.WindowMain.grdUC_Activity.Children.Add(UC_Activity);
+                        HomeUC.userControl = UC_Activity;
                         break;
                     }
                 case "lblActivity7":
@@ -369,6 +377,7 @@ namespace GameLearnEnlish.UserControls
                         //Add uc vào main
                         UC_LookAndFind UC_Activity = new UC_LookAndFind((int)unit);
                         Global.Instance.WindowMain.grdUC_Activity.Children.Add(UC_Activity);
+                        HomeUC.userControl = UC_Activity;
                         break;
                     }
                 default:

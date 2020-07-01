@@ -125,6 +125,13 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Number" Type="int" />
+          <Property Name="VoiceUnit" Type="varchar" MaxLength="128" />
+          <Property Name="Title" Type="varchar" MaxLength="128" />
+          <Property Name="VoiceTitle" Type="varchar" MaxLength="128" />
+          <Property Name="Image" Type="varchar" MaxLength="128" />
+          <Property Name="ImageButton" Type="varchar" MaxLength="128" />
+          <Property Name="ImageButtonOver" Type="varchar" MaxLength="128" />
+          <Property Name="ImageButtonSel" Type="varchar" MaxLength="128" />
         </EntityType>
         <Association Name="FK_ChoiceOfUnit_Choice">
           <End Role="Choice" Type="Self.Choice" Multiplicity="1" />
@@ -443,6 +450,13 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Number" Type="Int32" />
+          <Property Name="VoiceUnit" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="VoiceTitle" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="ImageButton" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="ImageButtonOver" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="ImageButtonSel" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Choices" Relationship="Self.ChoiceOfUnit" FromRole="Unit" ToRole="Choice" />
           <NavigationProperty Name="Concentrations" Relationship="Self.ConcentrationOfUnit" FromRole="Unit" ToRole="Concentration" />
           <NavigationProperty Name="LookAndFinds" Relationship="Self.LookAndFindOfUnit" FromRole="Unit" ToRole="LookAndFind" />
@@ -593,6 +607,13 @@
               <MappingFragment StoreEntitySet="Unit">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="VoiceUnit" ColumnName="VoiceUnit" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="VoiceTitle" ColumnName="VoiceTitle" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ImageButton" ColumnName="ImageButton" />
+                <ScalarProperty Name="ImageButtonOver" ColumnName="ImageButtonOver" />
+                <ScalarProperty Name="ImageButtonSel" ColumnName="ImageButtonSel" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

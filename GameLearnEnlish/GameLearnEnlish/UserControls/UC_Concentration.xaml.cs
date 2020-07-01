@@ -155,11 +155,6 @@ namespace GameLearnEnlish.UserControls
             lstWord = new ConcentrationBLL().GetWordsOfUnit(Unit);
 
             #region media
-            //ListVoiceWord = new List<string>()
-            //    {@"..\..\media\audio\concentration\act"+Unit+@"\sound1.mp3",
-            //     @"..\..\media\audio\concentration\act"+Unit+@"\sound2.mp3",
-            //     @"..\..\media\audio\concentration\act"+Unit+@"\sound3.mp3"};
-
             ListVoiceWord = new List<string>() { lstWord[0].Voice, lstWord[1].Voice, lstWord[2].Voice };
 
 
@@ -174,7 +169,6 @@ namespace GameLearnEnlish.UserControls
             mediaVotay.MediaEnded += MediaVotay_MediaEnded;
             #endregion
 
-            string pathLinkImg = @"..\..\media\textures\concentration\act" + Unit;
             Random rd = new Random();
             int[] num = new int[3] { 0, 0, 0 };
             int rand = 0;
@@ -188,7 +182,7 @@ namespace GameLearnEnlish.UserControls
                     {
                         if (num[rand - 1] < 2)
                         {
-                            ListImgWord.Add(lstWord[rand-1].Image);
+                            ListImgWord.Add(lstWord[rand - 1].Image);
                             ListImgSort.Add(rand);
                             num[rand - 1]++;
                             temp = true;
@@ -598,6 +592,17 @@ namespace GameLearnEnlish.UserControls
                 return 1;
             else
                 return 0;
+        }
+        public void StopAllMedia()
+        {
+            mediaPlayerVoid1.Stop();
+            mediaPlayerVoid2.Stop();
+            mediaPlayerVoid3.Stop();
+            mediaPlayerVoiceCorrect.Stop();
+            mediaPlayerVoiceInCorrect.Stop();
+            mediaTitle.Stop();
+            mediaDescription.Stop();
+            mediaVotay.Stop();
         }
     }
 }

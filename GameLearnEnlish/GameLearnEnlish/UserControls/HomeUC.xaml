@@ -150,14 +150,25 @@
                         <RowDefinition Height="7*"/>
                     </Grid.RowDefinitions>
 
-                    <Image x:Name="imgVolume" Grid.Row="1" Margin="10" Cursor="Hand">
-                        <Image.Style>
-                            <Style TargetType="{x:Type Image}">
-                                <Setter Property="Source" Value="..\media\textures\global\Volume_vertical_slider.png"/>
-                                <Setter Property="Stretch" Value="Uniform"/>
-                            </Style>
-                        </Image.Style>
-                    </Image>
+                    <Canvas x:Name="CanVasVol" Grid.Row="1" Width="auto" Height="315" Margin="10">
+                        <Image x:Name="imgVolume" Height="315" Canvas.Left="9">
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Setter Property="Source" Value="..\media\textures\global\Volume_vertical_slider.png"/>
+                                    <Setter Property="Stretch" Value="Uniform"/>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                        <Image x:Name="imgBallVolume" Canvas.Top="{Binding VolumnValue}" Cursor="Hand" MouseDown="imgBallVolume_MouseDown" MouseMove="imgBallVolume_MouseMove" MouseUp="imgBallVolume_MouseUp">
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Setter Property="Source" Value="..\media\textures\global\Volume_ball_slider.png"/>
+                                    <Setter Property="Stretch" Value="Uniform"/>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </Canvas>
+                    
 
 
                     <Image x:Name="imgVolumeBall" Grid.Row="1" Margin="10" Visibility="Hidden">

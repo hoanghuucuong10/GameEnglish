@@ -1,4 +1,5 @@
-﻿using GameLearnEnlish.Model;
+﻿using BLL;
+using GameLearnEnlish.Model;
 using GameLearnEnlish.Utility;
 using Microsoft.Win32;
 using System;
@@ -27,7 +28,7 @@ namespace GameLearnEnlish.UserControls
     {
         public static MenuUC menuUC = null;
         public SelectElementUC ButtonSelect;
-
+        List<Data.Unit> units = new List<Data.Unit>();
         #region [Khởi tạo âm thanh các unit]
         private MediaPlayer mplayer1 = new MediaPlayer();
         private MediaPlayer mplayer2 = new MediaPlayer();
@@ -60,48 +61,48 @@ namespace GameLearnEnlish.UserControls
             menuUC = this;
             InitializeComponent();
             StopVoid();//Tắt âm thanh
+
+            units = (new UnitBLL()).GetUnits();
             #region [Âm thanh các unit]
-            mplayer1.Open(new Uri(@"..\..\media\audio\global\BigF1_cdau_menu_U01.mp3", UriKind.Relative));
-            mplayer2.Open(new Uri(@"..\..\media\audio\global\BigF1_cdau_menu_U02.mp3", UriKind.Relative));
-            mplayer3.Open(new Uri(@"..\..\media\audio\global\BigF1_cdau_menu_U03.mp3", UriKind.Relative));
-            mplayer4.Open(new Uri(@"..\..\media\audio\global\BigF1_cdau_menu_U04.mp3", UriKind.Relative));
-            mplayer5.Open(new Uri(@"..\..\media\audio\global\BigF1_cdau_menu_U05.mp3", UriKind.Relative));
-            mplayer6.Open(new Uri(@"..\..\media\audio\global\BigF1_cdau_menu_U06.mp3", UriKind.Relative));
-            mplayer7.Open(new Uri(@"..\..\media\audio\global\BigF1_cdau_menu_U07.mp3", UriKind.Relative));
-            mplayer8.Open(new Uri(@"..\..\media\audio\global\BigF1_cdau_menu_U08.mp3", UriKind.Relative));
+            mplayer1.Open(new Uri(units[0].VoiceUnit, UriKind.Relative));
+            mplayer2.Open(new Uri(units[1].VoiceUnit, UriKind.Relative));
+            mplayer3.Open(new Uri(units[2].VoiceUnit, UriKind.Relative));
+            mplayer4.Open(new Uri(units[3].VoiceUnit, UriKind.Relative));
+            mplayer5.Open(new Uri(units[4].VoiceUnit, UriKind.Relative));
+            mplayer6.Open(new Uri(units[5].VoiceUnit, UriKind.Relative));
+            mplayer7.Open(new Uri(units[6].VoiceUnit, UriKind.Relative));
+            mplayer8.Open(new Uri(units[7].VoiceUnit, UriKind.Relative));
             mplayerAs.Open(new Uri(@"..\..\media\audio\global\BigF1_cdau_menu_U10.mp3", UriKind.Relative));
             mplayerPhonics.Open(new Uri(@"..\..\media\audio\global\BigF1_cdau_menu_U09.mp3", UriKind.Relative));
             #endregion
 
-            #region [Hình ảnh các unit]
-            uriImg1 = new Uri(@"\media\textures\global\Bt_unit_1_over.png", UriKind.Relative);
-            uriImg2 = new Uri(@"\media\textures\global\Bt_unit_2_over.png", UriKind.Relative);
-            uriImg3 = new Uri(@"\media\textures\global\Bt_unit_3_over.png", UriKind.Relative);
-            uriImg4 = new Uri(@"\media\textures\global\Bt_unit_4_over.png", UriKind.Relative);
-            uriImg5 = new Uri(@"\media\textures\global\Bt_unit_5_over.png", UriKind.Relative);
-            uriImg6 = new Uri(@"\media\textures\global\Bt_unit_6_over.png", UriKind.Relative);
-            uriImg7 = new Uri(@"\media\textures\global\Bt_unit_7_over.png", UriKind.Relative);
-            uriImg8 = new Uri(@"\media\textures\global\Bt_unit_8_over.png", UriKind.Relative);
+            #region [Hình ảnh ban đầu]
+            uriImg1 = new Uri(units[0].ImageButton, UriKind.Relative);
+            uriImg2 = new Uri(units[1].ImageButton, UriKind.Relative);
+            uriImg3 = new Uri(units[2].ImageButton, UriKind.Relative);
+            uriImg4 = new Uri(units[3].ImageButton, UriKind.Relative);
+            uriImg5 = new Uri(units[4].ImageButton, UriKind.Relative);
+            uriImg6 = new Uri(units[5].ImageButton, UriKind.Relative);
+            uriImg7 = new Uri(units[6].ImageButton, UriKind.Relative);
+            uriImg8 = new Uri(units[7].ImageButton, UriKind.Relative);
             uriImgAs = new Uri(@"\media\textures\global\Bt_unit_10_over.png", UriKind.Relative);
             uriImgPhonics = new Uri(@"\media\textures\global\Bt_unit_9_over.png", UriKind.Relative);
+
+            imgBt_unit_1.Source = new BitmapImage(uriImg1);
+            imgBt_unit_2.Source = new BitmapImage(uriImg2);
+            imgBt_unit_3.Source = new BitmapImage(uriImg3);
+            imgBt_unit_4.Source = new BitmapImage(uriImg4);
+            imgBt_unit_5.Source = new BitmapImage(uriImg5);
+            imgBt_unit_6.Source = new BitmapImage(uriImg6);
+            imgBt_unit_7.Source = new BitmapImage(uriImg7);
+            imgBt_unit_8.Source = new BitmapImage(uriImg8);
+
             #endregion
+
         }
 
         public void StopVoid()//Tắt âm thanh
         {
-            ////Tắt các âm khi mở menu
-            //if (UC_MultipleChoice.uC_MultipleChoice != null)
-            //{
-            //    UC_MultipleChoice.uC_MultipleChoice.StopVoid();
-            //}
-            //if (UC_Matching.uC_Matching != null)
-            //{
-            //    UC_Matching.uC_Matching.StopVoid();
-            //}
-            //if (UC_Description.uC_Description != null)
-            //{
-            //    UC_Description.uC_Description.StopVoid();
-            //}
             mplayer1.Stop();
             mplayer2.Stop();
             mplayer3.Stop();
@@ -126,19 +127,19 @@ namespace GameLearnEnlish.UserControls
 
         public void IsVisibleButtonClick(string NameButton) //Hiện nút khi được click
         {
-
+            imgBt_unit_click_1.Visibility = Visibility.Hidden;
+            imgBt_unit_click_2.Visibility = Visibility.Hidden;
+            imgBt_unit_click_3.Visibility = Visibility.Hidden;
+            imgBt_unit_click_4.Visibility = Visibility.Hidden;
+            imgBt_unit_click_5.Visibility = Visibility.Hidden;
+            imgBt_unit_click_6.Visibility = Visibility.Hidden;
+            imgBt_unit_click_7.Visibility = Visibility.Hidden;
+            imgBt_unit_click_8.Visibility = Visibility.Hidden;
             switch (NameButton)
             {
                 case "imgBt_unit_1":
                     {
                         imgBt_unit_click_1.Visibility = Visibility.Visible;
-                        imgBt_unit_click_2.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_3.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_4.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_5.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_6.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_7.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_8.Visibility = Visibility.Hidden;
                         imgBt_AS_click.Visibility = Visibility.Hidden;
                         imgBt_Phonics_click.Visibility = Visibility.Hidden;
                         CallChangeUnit(NameButton);//Đổi Unit
@@ -146,14 +147,7 @@ namespace GameLearnEnlish.UserControls
                     }
                 case "imgBt_unit_2":
                     {
-                        imgBt_unit_click_1.Visibility = Visibility.Hidden;
                         imgBt_unit_click_2.Visibility = Visibility.Visible;
-                        imgBt_unit_click_3.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_4.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_5.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_6.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_7.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_8.Visibility = Visibility.Hidden;
                         imgBt_AS_click.Visibility = Visibility.Hidden;
                         imgBt_Phonics_click.Visibility = Visibility.Hidden;
                         CallChangeUnit(NameButton);
@@ -161,14 +155,7 @@ namespace GameLearnEnlish.UserControls
                     }
                 case "imgBt_unit_3":
                     {
-                        imgBt_unit_click_1.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_2.Visibility = Visibility.Hidden;
                         imgBt_unit_click_3.Visibility = Visibility.Visible;
-                        imgBt_unit_click_4.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_5.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_6.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_7.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_8.Visibility = Visibility.Hidden;
                         imgBt_AS_click.Visibility = Visibility.Hidden;
                         imgBt_Phonics_click.Visibility = Visibility.Hidden;
                         CallChangeUnit(NameButton);
@@ -176,14 +163,7 @@ namespace GameLearnEnlish.UserControls
                     }
                 case "imgBt_unit_4":
                     {
-                        imgBt_unit_click_1.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_2.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_3.Visibility = Visibility.Hidden;
                         imgBt_unit_click_4.Visibility = Visibility.Visible;
-                        imgBt_unit_click_5.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_6.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_7.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_8.Visibility = Visibility.Hidden;
                         imgBt_AS_click.Visibility = Visibility.Hidden;
                         imgBt_Phonics_click.Visibility = Visibility.Hidden;
                         CallChangeUnit(NameButton);
@@ -191,14 +171,7 @@ namespace GameLearnEnlish.UserControls
                     }
                 case "imgBt_unit_5":
                     {
-                        imgBt_unit_click_1.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_2.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_3.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_4.Visibility = Visibility.Hidden;
                         imgBt_unit_click_5.Visibility = Visibility.Visible;
-                        imgBt_unit_click_6.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_7.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_8.Visibility = Visibility.Hidden;
                         imgBt_AS_click.Visibility = Visibility.Hidden;
                         imgBt_Phonics_click.Visibility = Visibility.Hidden;
                         CallChangeUnit(NameButton);
@@ -206,14 +179,7 @@ namespace GameLearnEnlish.UserControls
                     }
                 case "imgBt_unit_6":
                     {
-                        imgBt_unit_click_1.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_2.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_3.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_4.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_5.Visibility = Visibility.Hidden;
                         imgBt_unit_click_6.Visibility = Visibility.Visible;
-                        imgBt_unit_click_7.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_8.Visibility = Visibility.Hidden;
                         imgBt_AS_click.Visibility = Visibility.Hidden;
                         imgBt_Phonics_click.Visibility = Visibility.Hidden;
                         CallChangeUnit(NameButton);
@@ -221,14 +187,7 @@ namespace GameLearnEnlish.UserControls
                     }
                 case "imgBt_unit_7":
                     {
-                        imgBt_unit_click_1.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_2.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_3.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_4.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_5.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_6.Visibility = Visibility.Hidden;
                         imgBt_unit_click_7.Visibility = Visibility.Visible;
-                        imgBt_unit_click_8.Visibility = Visibility.Hidden;
                         imgBt_AS_click.Visibility = Visibility.Hidden;
                         imgBt_Phonics_click.Visibility = Visibility.Hidden;
                         CallChangeUnit(NameButton);
@@ -236,13 +195,6 @@ namespace GameLearnEnlish.UserControls
                     }
                 case "imgBt_unit_8":
                     {
-                        imgBt_unit_click_1.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_2.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_3.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_4.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_5.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_6.Visibility = Visibility.Hidden;
-                        imgBt_unit_click_7.Visibility = Visibility.Hidden;
                         imgBt_unit_click_8.Visibility = Visibility.Visible;
                         imgBt_AS_click.Visibility = Visibility.Hidden;
                         imgBt_Phonics_click.Visibility = Visibility.Hidden;
@@ -294,7 +246,7 @@ namespace GameLearnEnlish.UserControls
                 {
                     case "imgBt_unit_1":
                         {
-                            imgBt_unit_1.Source = new BitmapImage(uriImg1);//Hiển thị hình ảnh over
+                            imgBt_unit_1.Source = new BitmapImage(new Uri(units[0].ImageButtonOver, UriKind.Relative));//Hiển thị hình ảnh over
                             IsVisibleButtonClick(nameBtn.Name);//Hiện nút khi được nhấn
                             Global.Instance.ButtonMenuSelect = SelectElementUC._imgBt_unit_1;//Nút trên menu được click là nút nào
                             Global.Instance.UnitSelect = Unit._unit1;//Unit nào được chọn
@@ -304,7 +256,7 @@ namespace GameLearnEnlish.UserControls
                         }
                     case "imgBt_unit_2":
                         {
-                            imgBt_unit_2.Source = new BitmapImage(uriImg2);//Hiển thị hình ảnh over
+                            imgBt_unit_2.Source = new BitmapImage(new Uri(units[1].ImageButtonOver, UriKind.Relative));//Hiển thị hình ảnh over
                             IsVisibleButtonClick(nameBtn.Name);
                             Global.Instance.ButtonMenuSelect = SelectElementUC._imgBt_unit_2;//Nút trên menu được click là nút nào
                             Global.Instance.UnitSelect = Unit._unit2;//Unit nào được chọn
@@ -314,7 +266,7 @@ namespace GameLearnEnlish.UserControls
                         }
                     case "imgBt_unit_3":
                         {
-                            imgBt_unit_3.Source = new BitmapImage(uriImg3);//Hiển thị hình ảnh over
+                            imgBt_unit_3.Source = new BitmapImage(new Uri(units[2].ImageButtonOver, UriKind.Relative));//Hiển thị hình ảnh over
                             IsVisibleButtonClick(nameBtn.Name);
                             Global.Instance.ButtonMenuSelect = SelectElementUC._imgBt_unit_3;//Nút trên menu được click là nút nào
                             Global.Instance.UnitSelect = Unit._unit3;//Unit nào được chọn
@@ -324,7 +276,7 @@ namespace GameLearnEnlish.UserControls
                         }
                     case "imgBt_unit_4":
                         {
-                            imgBt_unit_4.Source = new BitmapImage(uriImg4);//Hiển thị hình ảnh over
+                            imgBt_unit_4.Source = new BitmapImage(new Uri(units[3].ImageButtonOver, UriKind.Relative));//Hiển thị hình ảnh over
                             IsVisibleButtonClick(nameBtn.Name);
                             Global.Instance.ButtonMenuSelect = SelectElementUC._imgBt_unit_4;//Nút trên menu được click là nút nào
                             Global.Instance.UnitSelect = Unit._unit4;//Unit nào được chọn
@@ -334,7 +286,7 @@ namespace GameLearnEnlish.UserControls
                         }
                     case "imgBt_unit_5":
                         {
-                            imgBt_unit_5.Source = new BitmapImage(uriImg5);//Hiển thị hình ảnh over
+                            imgBt_unit_5.Source = new BitmapImage(new Uri(units[4].ImageButtonOver, UriKind.Relative));//Hiển thị hình ảnh over
                             IsVisibleButtonClick(nameBtn.Name);
                             Global.Instance.ButtonMenuSelect = SelectElementUC._imgBt_unit_5;//Nút trên menu được click là nút nào
                             Global.Instance.UnitSelect = Unit._unit5;//Unit nào được chọn
@@ -344,7 +296,7 @@ namespace GameLearnEnlish.UserControls
                         }
                     case "imgBt_unit_6":
                         {
-                            imgBt_unit_6.Source = new BitmapImage(uriImg6);//Hiển thị hình ảnh over
+                            imgBt_unit_6.Source = new BitmapImage(new Uri(units[5].ImageButtonOver, UriKind.Relative));//Hiển thị hình ảnh over
                             IsVisibleButtonClick(nameBtn.Name);
                             Global.Instance.ButtonMenuSelect = SelectElementUC._imgBt_unit_6;//Nút trên menu được click là nút nào
                             Global.Instance.UnitSelect = Unit._unit6;//Unit nào được chọn
@@ -354,7 +306,7 @@ namespace GameLearnEnlish.UserControls
                         }
                     case "imgBt_unit_7":
                         {
-                            imgBt_unit_7.Source = new BitmapImage(uriImg7);//Hiển thị hình ảnh over
+                            imgBt_unit_7.Source = new BitmapImage(new Uri(units[6].ImageButtonOver, UriKind.Relative));//Hiển thị hình ảnh over
                             IsVisibleButtonClick(nameBtn.Name);
                             Global.Instance.ButtonMenuSelect = SelectElementUC._imgBt_unit_7;//Nút trên menu được click là nút nào
                             Global.Instance.UnitSelect = Unit._unit7;//Unit nào được chọn
@@ -364,7 +316,7 @@ namespace GameLearnEnlish.UserControls
                         }
                     case "imgBt_unit_8":
                         {
-                            imgBt_unit_8.Source = new BitmapImage(uriImg8);//Hiển thị hình ảnh over
+                            imgBt_unit_8.Source = new BitmapImage(new Uri(units[7].ImageButtonOver, UriKind.Relative));//Hiển thị hình ảnh over
                             IsVisibleButtonClick(nameBtn.Name);
                             Global.Instance.ButtonMenuSelect = SelectElementUC._imgBt_unit_8;//Nút trên menu được click là nút nào
                             Global.Instance.UnitSelect = Unit._unit8;//Unit nào được chọn
@@ -372,26 +324,26 @@ namespace GameLearnEnlish.UserControls
                             mplayer8.Play();//Phát âm thanh của unit
                             break;
                         }
-                    case "imgBt_AS":
-                        {
-                            imgBt_AS.Source = new BitmapImage(uriImgAs);//Hiển thị hình ảnh over
-                            IsVisibleButtonClick(nameBtn.Name);
-                            Global.Instance.ButtonMenuSelect = SelectElementUC._imgBt_AS;//Nút trên menu được click là nút nào
-                            Global.Instance.UnitSelect = Unit._AS;//Unit nào được chọn
+                    //case "imgBt_AS":
+                    //    {
+                    //        imgBt_AS.Source = new BitmapImage(uriImgAs);//Hiển thị hình ảnh over
+                    //        IsVisibleButtonClick(nameBtn.Name);
+                    //        Global.Instance.ButtonMenuSelect = SelectElementUC._imgBt_AS;//Nút trên menu được click là nút nào
+                    //        Global.Instance.UnitSelect = Unit._AS;//Unit nào được chọn
 
-                            mplayerAs.Play();//Phát âm thanh của unit
-                            break;
-                        }
-                    case "imgBt_Phonics":
-                        {
-                            imgBt_Phonics_click.Source = new BitmapImage(uriImgPhonics);//Hiển thị hình ảnh over
-                            IsVisibleButtonClick(nameBtn.Name);
-                            Global.Instance.ButtonMenuSelect = SelectElementUC._imgBt_Phonics;//Nút trên menu được click là nút nào
-                            Global.Instance.UnitSelect = Unit._Phonics;//Unit nào được chọn
+                    //        mplayerAs.Play();//Phát âm thanh của unit
+                    //        break;
+                    //    }
+                    //case "imgBt_Phonics":
+                    //    {
+                    //        imgBt_Phonics_click.Source = new BitmapImage(uriImgPhonics);//Hiển thị hình ảnh over
+                    //        IsVisibleButtonClick(nameBtn.Name);
+                    //        Global.Instance.ButtonMenuSelect = SelectElementUC._imgBt_Phonics;//Nút trên menu được click là nút nào
+                    //        Global.Instance.UnitSelect = Unit._Phonics;//Unit nào được chọn
 
-                            mplayerPhonics.Play();//Phát âm thanh của unit
-                            break;
-                        }
+                    //        mplayerPhonics.Play();//Phát âm thanh của unit
+                    //        break;
+                    //    }
                     default:
                         break;
                 }
@@ -409,64 +361,64 @@ namespace GameLearnEnlish.UserControls
                 {
                     case "imgBt_unit_1":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_1.png", UriKind.Relative);
+                            Uri uri = new Uri(units[0].ImageButton, UriKind.Relative);
                             imgBt_unit_1.Source = new BitmapImage(uri);
                             break;
                         }
                     case "imgBt_unit_2":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_2.png", UriKind.Relative);
+                            Uri uri = new Uri(units[1].ImageButton, UriKind.Relative);
                             imgBt_unit_2.Source = new BitmapImage(uri);
                             break;
                         }
                     case "imgBt_unit_3":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_3.png", UriKind.Relative);
+                            Uri uri = new Uri(units[2].ImageButton, UriKind.Relative);
                             imgBt_unit_3.Source = new BitmapImage(uri);
                             break;
                         }
                     case "imgBt_unit_4":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_4.png", UriKind.Relative);
+                            Uri uri = new Uri(units[3].ImageButton, UriKind.Relative);
                             imgBt_unit_4.Source = new BitmapImage(uri);
                             break;
                         }
                     case "imgBt_unit_5":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_5.png", UriKind.Relative);
+                            Uri uri = new Uri(units[4].ImageButton, UriKind.Relative);
                             imgBt_unit_5.Source = new BitmapImage(uri);
                             break;
                         }
                     case "imgBt_unit_6":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_6.png", UriKind.Relative);
+                            Uri uri = new Uri(units[5].ImageButton, UriKind.Relative);
                             imgBt_unit_6.Source = new BitmapImage(uri);
                             break;
                         }
                     case "imgBt_unit_7":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_7.png", UriKind.Relative);
+                            Uri uri = new Uri(units[6].ImageButton, UriKind.Relative);
                             imgBt_unit_7.Source = new BitmapImage(uri);
                             break;
                         }
                     case "imgBt_unit_8":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_8.png", UriKind.Relative);
+                            Uri uri = new Uri(units[7].ImageButton, UriKind.Relative);
                             imgBt_unit_8.Source = new BitmapImage(uri);
                             break;
                         }
-                    case "imgBt_AS":
-                        {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_AS.png", UriKind.Relative);
-                            imgBt_AS.Source = new BitmapImage(uri);
-                            break;
-                        }
-                    case "imgBt_Phonics":
-                        {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_Phonics.png", UriKind.Relative);
-                            imgBt_Phonics.Source = new BitmapImage(uri);
-                            break;
-                        }
+                    //case "imgBt_AS":
+                    //    {
+                    //        Uri uri = new Uri(@"\media\textures\global\Bt_AS.png", UriKind.Relative);
+                    //        imgBt_AS.Source = new BitmapImage(uri);
+                    //        break;
+                    //    }
+                    //case "imgBt_Phonics":
+                    //    {
+                    //        Uri uri = new Uri(@"\media\textures\global\Bt_Phonics.png", UriKind.Relative);
+                    //        imgBt_Phonics.Source = new BitmapImage(uri);
+                    //        break;
+                    //    }
                     default:
                         break;
                 }
@@ -483,64 +435,64 @@ namespace GameLearnEnlish.UserControls
                 {
                     case "imgBt_unit_1":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_1.png", UriKind.Relative);
-                            imgBt_unit_1.Source = new BitmapImage(uri);
+                          //  Uri uri = new Uri(@"\media\textures\global\Bt_unit_1.png", UriKind.Relative);
+                            imgBt_unit_1.Source = new BitmapImage(uriImg1);
                             break;
                         }
                     case "imgBt_unit_2":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_2.png", UriKind.Relative);
-                            imgBt_unit_2.Source = new BitmapImage(uri);
+                         //   Uri uri = new Uri(@"\media\textures\global\Bt_unit_2.png", UriKind.Relative);
+                            imgBt_unit_2.Source = new BitmapImage(uriImg2);
                             break;
                         }
                     case "imgBt_unit_3":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_3.png", UriKind.Relative);
-                            imgBt_unit_3.Source = new BitmapImage(uri);
+                           // Uri uri = new Uri(@"\media\textures\global\Bt_unit_3.png", UriKind.Relative);
+                            imgBt_unit_3.Source = new BitmapImage(uriImg3);
                             break;
                         }
                     case "imgBt_unit_4":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_4.png", UriKind.Relative);
-                            imgBt_unit_4.Source = new BitmapImage(uri);
+                           // Uri uri = new Uri(@"\media\textures\global\Bt_unit_4.png", UriKind.Relative);
+                            imgBt_unit_4.Source = new BitmapImage(uriImg4);
                             break;
                         }
                     case "imgBt_unit_5":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_5.png", UriKind.Relative);
-                            imgBt_unit_5.Source = new BitmapImage(uri);
+                          //  Uri uri = new Uri(@"\media\textures\global\Bt_unit_5.png", UriKind.Relative);
+                            imgBt_unit_5.Source = new BitmapImage(uriImg5);
                             break;
                         }
                     case "imgBt_unit_6":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_6.png", UriKind.Relative);
-                            imgBt_unit_6.Source = new BitmapImage(uri);
+                           // Uri uri = new Uri(@"\media\textures\global\Bt_unit_6.png", UriKind.Relative);
+                            imgBt_unit_6.Source = new BitmapImage(uriImg6);
                             break;
                         }
                     case "imgBt_unit_7":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_7.png", UriKind.Relative);
-                            imgBt_unit_7.Source = new BitmapImage(uri);
+                          //  Uri uri = new Uri(@"\media\textures\global\Bt_unit_7.png", UriKind.Relative);
+                            imgBt_unit_7.Source = new BitmapImage(uriImg7);
                             break;
                         }
                     case "imgBt_unit_8":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_8.png", UriKind.Relative);
-                            imgBt_unit_8.Source = new BitmapImage(uri);
+                           // Uri uri = new Uri(@"\media\textures\global\Bt_unit_8.png", UriKind.Relative);
+                            imgBt_unit_8.Source = new BitmapImage(uriImg8);
                             break;
                         }
-                    case "imgBt_AS":
-                        {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_AS.png", UriKind.Relative);
-                            imgBt_AS.Source = new BitmapImage(uri);
-                            break;
-                        }
-                    case "imgBt_Phonics":
-                        {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_Phonics.png", UriKind.Relative);
-                            imgBt_Phonics.Source = new BitmapImage(uri);
-                            break;
-                        }
+                    //case "imgBt_AS":
+                    //    {
+                    //        Uri uri = new Uri(@"\media\textures\global\Bt_AS.png", UriKind.Relative);
+                    //        imgBt_AS.Source = new BitmapImage(uri);
+                    //        break;
+                    //    }
+                    //case "imgBt_Phonics":
+                    //    {
+                    //        Uri uri = new Uri(@"\media\textures\global\Bt_Phonics.png", UriKind.Relative);
+                    //        imgBt_Phonics.Source = new BitmapImage(uri);
+                    //        break;
+                    //    }
                     default:
                         break;
                 }
@@ -558,74 +510,74 @@ namespace GameLearnEnlish.UserControls
                 {
                     case "imgBt_unit_1":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_1_over.png", UriKind.Relative);
+                            Uri uri = new Uri(units[0].ImageButtonOver, UriKind.Relative);
                             imgBt_unit_1.Source = new BitmapImage(uri);
                             imgBt_unit_1.Stretch = Stretch.Uniform;
                             break;
                         }
                     case "imgBt_unit_2":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_2_over.png", UriKind.Relative);
+                            Uri uri = new Uri(units[1].ImageButtonOver, UriKind.Relative);
                             imgBt_unit_2.Source = new BitmapImage(uri);
                             imgBt_unit_2.Stretch = Stretch.Uniform;
                             break;
                         }
                     case "imgBt_unit_3":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_3_over.png", UriKind.Relative);
+                            Uri uri = new Uri(units[2].ImageButtonOver, UriKind.Relative);
                             imgBt_unit_3.Source = new BitmapImage(uri);
                             imgBt_unit_3.Stretch = Stretch.Uniform;
                             break;
                         }
                     case "imgBt_unit_4":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_4_over.png", UriKind.Relative);
+                            Uri uri = new Uri(units[3].ImageButtonOver, UriKind.Relative);
                             imgBt_unit_4.Source = new BitmapImage(uri);
                             imgBt_unit_4.Stretch = Stretch.Uniform;
                             break;
                         }
                     case "imgBt_unit_5":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_5_over.png", UriKind.Relative);
+                            Uri uri = new Uri(units[4].ImageButtonOver, UriKind.Relative);
                             imgBt_unit_5.Source = new BitmapImage(uri);
                             imgBt_unit_5.Stretch = Stretch.Uniform;
                             break;
                         }
                     case "imgBt_unit_6":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_6_over.png", UriKind.Relative);
+                            Uri uri = new Uri(units[5].ImageButtonOver, UriKind.Relative);
                             imgBt_unit_6.Source = new BitmapImage(uri);
                             imgBt_unit_6.Stretch = Stretch.Uniform;
                             break;
                         }
                     case "imgBt_unit_7":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_7_over.png", UriKind.Relative);
+                            Uri uri = new Uri(units[6].ImageButtonOver, UriKind.Relative);
                             imgBt_unit_7.Source = new BitmapImage(uri);
                             imgBt_unit_7.Stretch = Stretch.Uniform;
                             break;
                         }
                     case "imgBt_unit_8":
                         {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_unit_8_over.png", UriKind.Relative);
+                            Uri uri = new Uri(units[7].ImageButtonOver, UriKind.Relative);
                             imgBt_unit_8.Source = new BitmapImage(uri);
                             imgBt_unit_8.Stretch = Stretch.Uniform;
                             break;
                         }
-                    case "imgBt_AS":
-                        {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_AS_over.png", UriKind.Relative);
-                            imgBt_AS.Source = new BitmapImage(uri);
-                            imgBt_AS.Stretch = Stretch.Uniform;
-                            break;
-                        }
-                    case "imgBt_Phonics":
-                        {
-                            Uri uri = new Uri(@"\media\textures\global\Bt_Phonics_over.png", UriKind.Relative);
-                            imgBt_Phonics.Source = new BitmapImage(uri);
-                            imgBt_Phonics.Stretch = Stretch.Uniform;
-                            break;
-                        }
+                    //case "imgBt_AS":
+                    //    {
+                    //        Uri uri = new Uri(units[8].ImageButtonOver, UriKind.Relative);
+                    //        imgBt_AS.Source = new BitmapImage(uri);
+                    //        imgBt_AS.Stretch = Stretch.Uniform;
+                    //        break;
+                    //    }
+                    //case "imgBt_Phonics":
+                    //    {
+                    //        Uri uri = new Uri(units[9].ImageButtonOver, UriKind.Relative);
+                    //        imgBt_Phonics.Source = new BitmapImage(uri);
+                    //        imgBt_Phonics.Stretch = Stretch.Uniform;
+                    //        break;
+                    //    }
                     default:
                         break;
                 }

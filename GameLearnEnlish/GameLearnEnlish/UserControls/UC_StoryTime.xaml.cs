@@ -584,5 +584,12 @@ namespace GameLearnEnlish.UserControls
                 x.Stop();
             }
         }
+        public void StopAllMedia()
+        {
+            StopMediaVoid();
+            mediaDescription.Stop();
+            mediaTitle.Stop();
+            media.Stop();
+        }
     }
 }

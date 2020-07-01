@@ -22,14 +22,13 @@ namespace GameLearnEnlish.UserControls
     public partial class LoadingUC : UserControl
     {
         private MainWindow mainWindow;
+        static MediaPlayer MediaMP3Background = new MediaPlayer();
         public LoadingUC(MainWindow main)
         {
             mainWindow = main;
          
             InitializeComponent();
             media.Source = new Uri(@"..\..\Images\load2.gif", UriKind.Relative);
-         //   medialoading.Source = new Uri(@"..\..\Images\gifloading.gif", UriKind.Relative);
-           // lab.Visibility = Visibility.Visible;
             Loading();
         }
 
@@ -47,7 +46,6 @@ namespace GameLearnEnlish.UserControls
             media.Visibility = Visibility.Hidden;
 
             HomeUC homeUC = new HomeUC();
-
             mainWindow.grdHomeUC.Children.Clear();
             mainWindow.grdHomeUC.Children.Add(homeUC);
 
@@ -56,7 +54,7 @@ namespace GameLearnEnlish.UserControls
         void Loading()
         {
             timer.Tick += timer_tick;
-            timer.Interval = new TimeSpan(0, 0, 10);
+            timer.Interval = new TimeSpan(0, 0, 15);
             timer.Start();
         }
     }

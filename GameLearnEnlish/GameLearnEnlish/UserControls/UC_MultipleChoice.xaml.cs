@@ -141,7 +141,7 @@ namespace GameLearnEnlish.UserControls
                 string pathLinkImg = @"..\..\media\textures\multiplechoice\act" + Unit;
                 string pathVoidWord = @"..\..\media\audio\multiplechoice\act" + Unit;
                 Random rd = new Random();
-               
+
                 int rand = 0;
                 for (int i = 1; i <= 3; i++)
                 {
@@ -599,6 +599,13 @@ namespace GameLearnEnlish.UserControls
         }
         #endregion
 
-
+        public void StopAllMedia()
+        {
+            mediaPlayerVoidStart.Stop();
+            mediaPlayerVoiceDescription.Stop();
+            mediaPlayerVoid.Stop();
+            mediaPlayerVoidCorrect.Stop(); 
+            mediaPlayerVoiInCorrect.Stop();
+        }
     }
 }

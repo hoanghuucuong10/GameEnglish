@@ -28,6 +28,13 @@ namespace DAL
     
         public int Id { get; set; }
         public Nullable<int> Number { get; set; }
+        public string VoiceUnit { get; set; }
+        public string Title { get; set; }
+        public string VoiceTitle { get; set; }
+        public string Image { get; set; }
+        public string ImageButton { get; set; }
+        public string ImageButtonOver { get; set; }
+        public string ImageButtonSel { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Choice> Choices { get; set; }

@@ -37,6 +37,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AudioSwitcher.AudioApi, Version=3.0.0.209, Culture=neutral, PublicKeyToken=fda5729e2db3a64f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AudioSwitcher.AudioApi.3.0.0\lib\net40\AudioSwitcher.AudioApi.dll</HintPath>
+    </Reference>
+    <Reference Include="AudioSwitcher.AudioApi.CoreAudio, Version=3.0.0.209, Culture=neutral, PublicKeyToken=fda5729e2db3a64f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AudioSwitcher.AudioApi.CoreAudio.3.0.0.1\lib\net40\AudioSwitcher.AudioApi.CoreAudio.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -261,6 +267,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="media\audio\animatedstory\act1\" />
+    <Folder Include="media\textures\sorting\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\DownArrow.png" />
@@ -749,33 +756,6 @@
     <Resource Include="media\textures\concentration\act9\img2.png" />
     <Resource Include="media\textures\concentration\act9\img3.png" />
     <Resource Include="media\textures\concentration\card_back.png" />
-    <Resource Include="media\textures\draganddrop\act1\img1.png" />
-    <Resource Include="media\textures\draganddrop\act1\img2.png" />
-    <Resource Include="media\textures\draganddrop\act2\img1.png" />
-    <Resource Include="media\textures\draganddrop\act2\img2.png" />
-    <Resource Include="media\textures\draganddrop\act3\img1.png" />
-    <Resource Include="media\textures\draganddrop\act3\img2.png" />
-    <Resource Include="media\textures\draganddrop\act3\img3.png" />
-    <Resource Include="media\textures\draganddrop\act3\img4.png" />
-    <Resource Include="media\textures\draganddrop\act4\img1.png" />
-    <Resource Include="media\textures\draganddrop\act4\img2.png" />
-    <Resource Include="media\textures\draganddrop\act4\img3.png" />
-    <Resource Include="media\textures\draganddrop\act4\img4.png" />
-    <Resource Include="media\textures\draganddrop\act5\img1.png" />
-    <Resource Include="media\textures\draganddrop\act5\img2.png" />
-    <Resource Include="media\textures\draganddrop\act5\img3.png" />
-    <Resource Include="media\textures\draganddrop\act5\img4.png" />
-    <Resource Include="media\textures\draganddrop\act6\img1.png" />
-    <Resource Include="media\textures\draganddrop\act6\img2.png" />
-    <Resource Include="media\textures\draganddrop\act6\img3.png" />
-    <Resource Include="media\textures\draganddrop\act6\img4.png" />
-    <Resource Include="media\textures\draganddrop\act7\img1.png" />
-    <Resource Include="media\textures\draganddrop\act7\img2.png" />
-    <Resource Include="media\textures\draganddrop\act8\img1.png" />
-    <Resource Include="media\textures\draganddrop\act8\img2.png" />
-    <Resource Include="media\textures\draganddrop\Box.png" />
-    <Resource Include="media\textures\draganddrop\Box_1.png" />
-    <Resource Include="media\textures\draganddrop\Box_2.png" />
     <Resource Include="media\textures\global\actv1.png" />
     <Resource Include="media\textures\global\actv1a.png" />
     <Resource Include="media\textures\global\actv2.png" />
@@ -1104,92 +1084,6 @@
     <Resource Include="media\textures\sequence\Box_3.png" />
     <Resource Include="media\textures\sequence\Box_4.png" />
     <Resource Include="media\textures\sequence\play.png" />
-    <Resource Include="media\textures\sorting\act1\Box_1.png" />
-    <Resource Include="media\textures\sorting\act1\Box_2.png" />
-    <Resource Include="media\textures\sorting\act1\img1.png" />
-    <Resource Include="media\textures\sorting\act1\img2.png" />
-    <Resource Include="media\textures\sorting\act1\img3.png" />
-    <Resource Include="media\textures\sorting\act1\img4.png" />
-    <Resource Include="media\textures\sorting\act2\Box_1.png" />
-    <Resource Include="media\textures\sorting\act2\Box_2.png" />
-    <Resource Include="media\textures\sorting\act2\img1.png" />
-    <Resource Include="media\textures\sorting\act2\img2.png" />
-    <Resource Include="media\textures\sorting\act2\img3.png" />
-    <Resource Include="media\textures\sorting\act2\img4.png" />
-    <Resource Include="media\textures\sorting\act2\img5.png" />
-    <Resource Include="media\textures\sorting\act2\img6.png" />
-    <Resource Include="media\textures\sorting\act2\img7.png" />
-    <Resource Include="media\textures\sorting\act2\img8.png" />
-    <Resource Include="media\textures\sorting\act3\Box_1.png" />
-    <Resource Include="media\textures\sorting\act3\Box_2.png" />
-    <Resource Include="media\textures\sorting\act3\img1.png" />
-    <Resource Include="media\textures\sorting\act3\img2.png" />
-    <Resource Include="media\textures\sorting\act3\img3.png" />
-    <Resource Include="media\textures\sorting\act3\img4.png" />
-    <Resource Include="media\textures\sorting\act3\img5.png" />
-    <Resource Include="media\textures\sorting\act3\img6.png" />
-    <Resource Include="media\textures\sorting\act3\img7.png" />
-    <Resource Include="media\textures\sorting\act3\img8.png" />
-    <Resource Include="media\textures\sorting\act4\Box_1.png" />
-    <Resource Include="media\textures\sorting\act4\Box_2.png" />
-    <Resource Include="media\textures\sorting\act4\img1.png" />
-    <Resource Include="media\textures\sorting\act4\img2.png" />
-    <Resource Include="media\textures\sorting\act4\img3.png" />
-    <Resource Include="media\textures\sorting\act4\img4.png" />
-    <Resource Include="media\textures\sorting\act4\img5.png" />
-    <Resource Include="media\textures\sorting\act4\img6.png" />
-    <Resource Include="media\textures\sorting\act4\img7.png" />
-    <Resource Include="media\textures\sorting\act4\img8.png" />
-    <Resource Include="media\textures\sorting\act5\Box_1.png" />
-    <Resource Include="media\textures\sorting\act5\Box_2.png" />
-    <Resource Include="media\textures\sorting\act5\img1.png" />
-    <Resource Include="media\textures\sorting\act5\img2.png" />
-    <Resource Include="media\textures\sorting\act5\img3.png" />
-    <Resource Include="media\textures\sorting\act5\img4.png" />
-    <Resource Include="media\textures\sorting\act5\img5.png" />
-    <Resource Include="media\textures\sorting\act5\img6.png" />
-    <Resource Include="media\textures\sorting\act5\img7.png" />
-    <Resource Include="media\textures\sorting\act5\img8.png" />
-    <Resource Include="media\textures\sorting\act6\Box_1.png" />
-    <Resource Include="media\textures\sorting\act6\Box_2.png" />
-    <Resource Include="media\textures\sorting\act6\img1.png" />
-    <Resource Include="media\textures\sorting\act6\img2.png" />
-    <Resource Include="media\textures\sorting\act6\img3.png" />
-    <Resource Include="media\textures\sorting\act6\img4.png" />
-    <Resource Include="media\textures\sorting\act6\img5.png" />
-    <Resource Include="media\textures\sorting\act6\img6.png" />
-    <Resource Include="media\textures\sorting\act6\img7.png" />
-    <Resource Include="media\textures\sorting\act6\img8.png" />
-    <Resource Include="media\textures\sorting\act7\Box_1.png" />
-    <Resource Include="media\textures\sorting\act7\Box_2.png" />
-    <Resource Include="media\textures\sorting\act7\img1.png" />
-    <Resource Include="media\textures\sorting\act7\img2.png" />
-    <Resource Include="media\textures\sorting\act7\img3.png" />
-    <Resource Include="media\textures\sorting\act7\img4.png" />
-    <Resource Include="media\textures\sorting\act7\img5.png" />
-    <Resource Include="media\textures\sorting\act7\img6.png" />
-    <Resource Include="media\textures\sorting\act7\img7.png" />
-    <Resource Include="media\textures\sorting\act7\img8.png" />
-    <Resource Include="media\textures\sorting\act8\Box_1.png" />
-    <Resource Include="media\textures\sorting\act8\Box_2.png" />
-    <Resource Include="media\textures\sorting\act8\img1.png" />
-    <Resource Include="media\textures\sorting\act8\img2.png" />
-    <Resource Include="media\textures\sorting\act8\img3.png" />
-    <Resource Include="media\textures\sorting\act8\img4.png" />
-    <Resource Include="media\textures\sorting\act8\img5.png" />
-    <Resource Include="media\textures\sorting\act8\img6.png" />
-    <Resource Include="media\textures\sorting\act8\img7.png" />
-    <Resource Include="media\textures\sorting\act8\img8.png" />
-    <Resource Include="media\textures\sorting\act9\Box_1.png" />
-    <Resource Include="media\textures\sorting\act9\Box_2.png" />
-    <Resource Include="media\textures\sorting\act9\img1.png" />
-    <Resource Include="media\textures\sorting\act9\img2.png" />
-    <Resource Include="media\textures\sorting\act9\img3.png" />
-    <Resource Include="media\textures\sorting\act9\img4.png" />
-    <Resource Include="media\textures\sorting\act9\img5.png" />
-    <Resource Include="media\textures\sorting\act9\img6.png" />
-    <Resource Include="media\textures\sorting\act9\img7.png" />
-    <Resource Include="media\textures\sorting\act9\img8.png" />
     <Resource Include="media\textures\storytime\act1\img1.png" />
     <Resource Include="media\textures\storytime\act1\img2.png" />
     <Resource Include="media\textures\storytime\act1\img3.png" />

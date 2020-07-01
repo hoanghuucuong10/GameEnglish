@@ -376,6 +376,11 @@ namespace GameLearnEnlish.UserControls
 
         }
         #endregion
-
+        public void StopAllMedia()
+        {
+            mediaPlayerVoiceDescription.Stop();
+            mediaPlayerVoidCorrect.Stop();
+            mediaPlayerVoidStart.Stop();
+        }
     }
 }

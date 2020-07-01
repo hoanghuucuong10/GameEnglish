@@ -56,6 +56,7 @@
     <Compile Include="StorytimeBLL.cs" />
     <Compile Include="ConcentrationBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

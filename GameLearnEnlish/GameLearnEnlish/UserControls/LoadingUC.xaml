@@ -8,7 +8,6 @@
              mc:Ignorable="d" 
            >
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-        
         <StackPanel>
             <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" Height="200">
                 <Image Source="/Images/image.jpg" Height="150" />

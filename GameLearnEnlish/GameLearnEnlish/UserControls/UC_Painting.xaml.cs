@@ -750,6 +750,16 @@ namespace GameLearnEnlish.UserControls
             Panel.SetZIndex(img, 2000);
         }
 
-
+        public void StopAllMedia()
+        {
+            mediaTitle.Stop();
+            mediaDescription.Stop();
+            mediaCorrect.Stop();
+            mediaInCorrect.Stop();
+            mediaVotay.Stop();
+            voice1.Stop();
+            voice2.Stop();
+            voice3.Stop();
+        }
     }
 }
