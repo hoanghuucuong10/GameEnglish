@@ -39,8 +39,6 @@ namespace GameLearnEnlish.UserControls
                     {
                         case "lblActivity1":
                             {
-                                //Global.Instance.WindowMain.grdPlacard.Children.Clear();
-                                //Global.Instance.WindowMain.grdPlacard.Children.Add(new PlacardUC());
                                 lblActivity.Content = "Concentration";
                                 Uri uri = new Uri(@"\media\textures\global\actv1a.png", UriKind.Relative);
                                 imgActv.Source = new BitmapImage(uri);
@@ -50,8 +48,6 @@ namespace GameLearnEnlish.UserControls
                             }
                         case "lblActivity2":
                             {
-                                //Global.Instance.WindowMain.grdPlacard.Children.Clear();
-                                //Global.Instance.WindowMain.grdPlacard.Children.Add(new PlacardUC());
                                 lblActivity.Content = "Matching";
                                 Uri uri = new Uri(@"\media\textures\global\actv2a.png", UriKind.Relative);
                                 imgActv.Source = new BitmapImage(uri);

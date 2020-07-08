@@ -64,6 +64,7 @@ namespace GameLearnEnlish.UserControls
         private MediaPlayer mediaPlayerVoidCorrect = new MediaPlayer();
         private MediaPlayer mediaPlayerVoidClickCard = new MediaPlayer();
         private MediaPlayer mediaPlayerVoiInCorrect = new MediaPlayer();
+        private MediaPlayer mediaVotay = new MediaPlayer();
 
         private List<Data.Matching> lstWord = new List<Data.Matching>();
 
@@ -72,6 +73,7 @@ namespace GameLearnEnlish.UserControls
         private List<int> ListVoidSort = new List<int>();//vị trí của 3 âm thanh.
         private List<string> ListVoidWord = new List<string>();//danh sách âm thanh của từ
 
+        private int Score = 0;
 
         public int numImageClick;//vị trí hình vừa chọn
 
@@ -88,7 +90,7 @@ namespace GameLearnEnlish.UserControls
             InitializeComponent();
             Unit = unit;
             StartApp();//Khong thao tác khi đang khởi động
-
+            Score = 0;
             CreateQuestionAndAnswer();//Khởi tạo câu hỏi và câu trả lời
 
             mediaPlayerVoidStart.Open(new Uri(VoidStart, UriKind.Relative));//Âm thanh title
@@ -118,7 +120,7 @@ namespace GameLearnEnlish.UserControls
             });
 
         }
-
+       
         #region [Hàm dùng chung]
         //Khởi tạo list câu hỏi và câu trả lời
         public void CreateQuestionAndAnswer()
@@ -134,8 +136,11 @@ namespace GameLearnEnlish.UserControls
             #region media
 
             mediaPlayerVoidCorrect.Open(new Uri(VoidCorrect, UriKind.Relative));
+            mediaPlayerVoidCorrect.MediaEnded += MediaPlayerVoidCorrect_MediaEnded;
             mediaPlayerVoidClickCard.Open(new Uri(VoidClickCard, UriKind.Relative));
             mediaPlayerVoiInCorrect.Open(new Uri(VoidInCorrect, UriKind.Relative));
+            mediaVotay.Open(new Uri(@"..\..\media\audio\tiengvotay.mp3", UriKind.Relative));
+            mediaVotay.MediaEnded += MediaVotay_MediaEnded;
             #endregion
 
             string pathLinkImg = @"..\..\media\textures\matching\act" + Unit;
@@ -218,6 +223,15 @@ namespace GameLearnEnlish.UserControls
 
 
         }
+        private void MediaVotay_MediaEnded(object sender, EventArgs e)
+        {
+            mediaVotay.Stop();
+        }
+        private void MediaPlayerVoidCorrect_MediaEnded(object sender, EventArgs e)
+        {
+            CheckScore();
+        }
+
         public void StopVoid()//Tắt âm thanh
         {
             mediaPlayerVoiInCorrect.Stop();
@@ -815,10 +829,8 @@ namespace GameLearnEnlish.UserControls
                     mediaPlayerVoidCorrect.Play();//Phát ra âm chọn đúng
                     mediaPlayerVoidClickCard.Play();//Phát ra âm click
 
-                    //if (HiddenAnswer1 == true && HiddenQuestion1 == true && HiddenAnswer2 == true && HiddenQuestion2 == true && HiddenAnswer3 == true && HiddenQuestion3 == true)//Nếu tất cả câu trả lời đều được chọn
-                    //{
+                    Score++;
 
-                    //}
 
                     return;
                 }
@@ -880,6 +892,9 @@ namespace GameLearnEnlish.UserControls
                     IsClickQuestion = false;//Set câu hỏi chưa được chọn
                     mediaPlayerVoidCorrect.Play();//Phát ra âm chọn đúng
                     mediaPlayerVoidClickCard.Play();//Phát ra âm click
+
+                    Score++;
+
                     return;
 
                 }
@@ -939,6 +954,9 @@ namespace GameLearnEnlish.UserControls
                     IsClickQuestion = false;//Set câu hỏi chưa được chọn
                     mediaPlayerVoidCorrect.Play();//Phát ra âm chọn đúng
                     mediaPlayerVoidClickCard.Play();//Phát ra âm click
+
+                    Score++;
+
                     return;
                 }
                 else
@@ -967,6 +985,17 @@ namespace GameLearnEnlish.UserControls
                 }
             }
         }
+
+        private void CheckScore()
+        {
+            if(Score >=3)
+            {
+                grdUC_Matching.Visibility = Visibility.Hidden;
+                Votay.Visibility = Visibility;
+                mediaVotay.Play();
+            }    
+        }
+
         private void Answer1_MouseEnter(object sender, MouseEventArgs e)
         {
             imgImg1.Opacity = 0.8;
@@ -1023,6 +1052,8 @@ namespace GameLearnEnlish.UserControls
                     IsClickQuestion = false;//Set câu hỏi chưa được chọn
                     mediaPlayerVoidCorrect.Play();//Phát ra âm chọn đúng
                     mediaPlayerVoidClickCard.Play();//Phát ra âm click
+
+                    Score++;
                     return;
                 }
                 else
@@ -1083,6 +1114,7 @@ namespace GameLearnEnlish.UserControls
                     IsClickQuestion = false;//Set câu hỏi chưa được chọn
                     mediaPlayerVoidCorrect.Play();//Phát ra âm chọn đúng
                     mediaPlayerVoidClickCard.Play();//Phát ra âm click
+                    Score++;
                     return;
 
                 }
@@ -1145,6 +1177,7 @@ namespace GameLearnEnlish.UserControls
                     IsClickQuestion = false;//Set câu hỏi chưa được chọn
                     mediaPlayerVoidCorrect.Play();//Phát ra âm chọn đúng
                     mediaPlayerVoidClickCard.Play();//Phát ra âm click
+                    Score++;
                     return;
                 }
                 else
@@ -1229,6 +1262,8 @@ namespace GameLearnEnlish.UserControls
                     IsClickQuestion = false;//Set câu hỏi chưa được chọn
                     mediaPlayerVoidCorrect.Play();//Phát ra âm chọn đúng
                     mediaPlayerVoidClickCard.Play();//Phát ra âm click
+
+                    Score++;
                     return;
                 }
                 else
@@ -1288,6 +1323,7 @@ namespace GameLearnEnlish.UserControls
                     IsClickQuestion = false;//Set câu hỏi chưa được chọn
                     mediaPlayerVoidCorrect.Play();//Phát ra âm chọn đúng
                     mediaPlayerVoidClickCard.Play();//Phát ra âm click
+                    Score++;
                     return;
 
                 }
@@ -1348,6 +1384,7 @@ namespace GameLearnEnlish.UserControls
                     IsClickQuestion = false;//Set câu hỏi chưa được chọn
                     mediaPlayerVoidCorrect.Play();//Phát ra âm chọn đúng
                     mediaPlayerVoidClickCard.Play();//Phát ra âm click
+                    Score++;
                     return;
                 }
                 else
@@ -1407,6 +1444,7 @@ namespace GameLearnEnlish.UserControls
             mediaPlayerVoidCorrect.Stop();
             mediaPlayerVoidClickCard.Stop();
             mediaPlayerVoiInCorrect.Stop();
+            mediaVotay.Stop();
         }
     }
 }

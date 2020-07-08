@@ -67,7 +67,7 @@ namespace GameLearnEnlish.UserControls
             }
 
             //Set volume img
-            Delta = defaultPlaybackDevice.Volume*3;
+            volApp = defaultPlaybackDevice.Volume * 3;
             RaisePropertyChanged("VolumnValue");
 
         }
@@ -76,6 +76,42 @@ namespace GameLearnEnlish.UserControls
         {
             mplayerClose.Stop();
         }
+
+        public void StopAllMedia()
+        {
+            if (userControl != null)
+            {
+                if (userControl is UC_Concentration)
+                {
+                    (userControl as UC_Concentration).StopAllMedia();
+                }
+                else if (userControl is UC_Matching)
+                {
+                    (userControl as UC_Matching).StopAllMedia();
+                }
+                else if (userControl is UC_LookAndFind)
+                {
+                    (userControl as UC_LookAndFind).StopAllMedia();
+                }
+                else if (userControl is UC_MultipleChoice)
+                {
+                    (userControl as UC_MultipleChoice).StopAllMedia();
+                }
+                else if (userControl is UC_Painting)
+                {
+                    (userControl as UC_Painting).StopAllMedia();
+                }
+                else if (userControl is UC_Sorting)
+                {
+                    (userControl as UC_Sorting).StopAllMedia();
+                }
+                else if (userControl is UC_StoryTime)
+                {
+                    (userControl as UC_StoryTime).StopAllMedia();
+                }
+            }
+        }
+
         private void imgbtnMenu_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //Tắt các âm khi mở menu
@@ -86,22 +122,6 @@ namespace GameLearnEnlish.UserControls
             Global.Instance.WindowMain.grdBoxSubMenuUC.Children.Add(ucBoxSubMenu);
             Global.Instance.WindowMain.grdMenu_GlobeUC.Children.Add(ucMenu_Globe);
 
-            if (UC_MultipleChoice.uC_MultipleChoice != null)
-            {
-                UC_MultipleChoice.uC_MultipleChoice.StopVoid();
-            }
-            if (UC_Matching.uC_Matching != null)
-            {
-                UC_Matching.uC_Matching.StopVoid();
-            }
-            if (BoxSubMenuUC.boxSubMenuUC != null)
-            {
-                BoxSubMenuUC.boxSubMenuUC.StopVoid();
-            }
-            if (UC_LookAndFind.uC_LookAndFind != null)
-            {
-                UC_LookAndFind.uC_LookAndFind.StopVoid();
-            }
             switch (Global.Instance.ButtonMenuSelect)
             {
 
@@ -166,42 +186,12 @@ namespace GameLearnEnlish.UserControls
                         MenuUC.menuUC.IsVisibleButtonClick("imgBt_Phonics");
                         break;
                     }
-
                 default:
                     break;
             }
+            StopAllMedia();
 
-            if (userControl != null)
-            {
-                if (userControl is UC_Concentration)
-                {
-                    (userControl as UC_Concentration).StopAllMedia();
-                }
-                else if (userControl is UC_Matching)
-                {
-                    (userControl as UC_Matching).StopAllMedia();
-                }
-                else if (userControl is UC_LookAndFind)
-                {
-                    (userControl as UC_LookAndFind).StopAllMedia();
-                }
-                else if (userControl is UC_MultipleChoice)
-                {
-                    (userControl as UC_MultipleChoice).StopAllMedia();
-                }
-                else if (userControl is UC_Painting)
-                {
-                    (userControl as UC_Painting).StopAllMedia();
-                }
-                else if (userControl is UC_Sorting)
-                {
-                    (userControl as UC_Sorting).StopAllMedia();
-                }
-                else if (userControl is UC_StoryTime)
-                {
-                    (userControl as UC_StoryTime).StopAllMedia();
-                }
-            }
+
         }
 
         private void imgbtnHelp_MouseDown(object sender, MouseButtonEventArgs e)
@@ -256,97 +246,225 @@ namespace GameLearnEnlish.UserControls
             Global.Instance.WindowMain.grdExit_bg_boxUC.Children.Clear();
         }
 
+        public void CallChangeActivity(string nameTbl, SelectElementUC ButtonIsSelect)
+        {
+            Global.Instance.WindowMain.grdPlacard.Children.Clear();
+            Global.Instance.WindowMain.grdPlacard.Children.Add(new PlacardUC());
+            PlacardUC.placardUC.ChangeActivity(nameTbl, ButtonIsSelect);
+
+        }
         private void imgbtnNext_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (Global.Instance.indexSelectActivity < 7)
+            if (userControl != null)
             {
-                Task.Run(() =>
-                {
-                    this.Dispatcher.Invoke(() =>
-                    {
-                        IsEnableImageButton(false);
-                        if (UC_MultipleChoice.uC_MultipleChoice != null)
-                        {
-                            UC_MultipleChoice.uC_MultipleChoice.StopVoid();
-                        }
-                        if (UC_Matching.uC_Matching != null)
-                        {
-                            UC_Matching.uC_Matching.StopVoid();
-                        }
-                        if (BoxSubMenuUC.boxSubMenuUC != null)
-                        {
-                            BoxSubMenuUC.boxSubMenuUC.StopVoid();
-                        }
-                        if (UC_LookAndFind.uC_LookAndFind != null)
-                        {
-                            UC_LookAndFind.uC_LookAndFind.StopVoid();
-                        }
-                        Global.Instance.indexSelectActivity++;
-                        string nameTbl = "lblActivity" + Global.Instance.indexSelectActivity;
-                        BoxSubMenuUC.boxSubMenuUC.CallChangeActivity(nameTbl, SelectElementUC._Bt_unit);
-                        BoxSubMenuUC.boxSubMenuUC.UnitUCActivity(Global.Instance.UnitSelect, nameTbl);
-                    });
-                    Thread.Sleep(6000);
-                }).ContinueWith((task) =>
-                {
-                    this.Dispatcher.Invoke(() =>
-                    {
-                        IsEnableImageButton(true);
-                    });
 
-                });
+                //Xóa UC cũ
+                string x = userControl.GetType().ToString();
+                switch (x)
+                {
+                    case "GameLearnEnlish.UserControls.UC_Concentration":
+                        {
+                            StopAllMedia();
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Add(new PlacardUC());
+                            PlacardUC.placardUC.ChangeActivity("lblActivity2", SelectElementUC._Bt_unit);
+
+
+                            UC_Matching UC_Activity = new UC_Matching((int)Global.Instance.UnitSelect);
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Add(UC_Activity);
+                            HomeUC.userControl = UC_Activity;
+                            break;
+                        }
+                    case "GameLearnEnlish.UserControls.UC_Matching":
+                        {
+                            StopAllMedia();
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Add(new PlacardUC());
+                            PlacardUC.placardUC.ChangeActivity("lblActivity3", SelectElementUC._Bt_unit);
+                            //Add uc vào main
+                            UC_Sorting UC_Activity = new UC_Sorting((int)Global.Instance.UnitSelect);
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Add(UC_Activity);
+                            HomeUC.userControl = UC_Activity;
+                            break;
+                        }
+                    case "GameLearnEnlish.UserControls.UC_Sorting":
+                        {
+                            StopAllMedia();
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Add(new PlacardUC());
+                            PlacardUC.placardUC.ChangeActivity("lblActivity4", SelectElementUC._Bt_unit);
+                            //Add uc vào main
+                            UC_MultipleChoice UC_Activity = new UC_MultipleChoice((int)Global.Instance.UnitSelect);
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Add(UC_Activity);
+                            HomeUC.userControl = UC_Activity;
+                            break;
+                        }
+                    case "GameLearnEnlish.UserControls.UC_MultipleChoice":
+                        {
+                            StopAllMedia();
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Add(new PlacardUC());
+                            PlacardUC.placardUC.ChangeActivity("lblActivity5", SelectElementUC._Bt_unit);
+                            //Add uc vào main
+                            UC_Painting UC_Activity = new UC_Painting((int)Global.Instance.UnitSelect);
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Add(UC_Activity);
+                            HomeUC.userControl = UC_Activity;
+                            break;
+                        }
+                    case "GameLearnEnlish.UserControls.UC_Painting":
+                        {
+                            StopAllMedia();
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Add(new PlacardUC());
+                            PlacardUC.placardUC.ChangeActivity("lblActivity6", SelectElementUC._Bt_unit);
+                            //Add uc vào main
+                            UC_StoryTime UC_Activity = new UC_StoryTime((int)Global.Instance.UnitSelect);
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Add(UC_Activity);
+                            HomeUC.userControl = UC_Activity;
+                            break;
+                        }
+                    case "GameLearnEnlish.UserControls.UC_StoryTime":
+                        {
+                            StopAllMedia();
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Add(new PlacardUC());
+                            PlacardUC.placardUC.ChangeActivity("lblActivity7", SelectElementUC._Bt_unit);
+                            //Add uc vào main
+                            UC_LookAndFind UC_Activity = new UC_LookAndFind((int)Global.Instance.UnitSelect);
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Add(UC_Activity);
+                            HomeUC.userControl = UC_Activity;
+                            break;
+                        }
+                    case "GameLearnEnlish.UserControls.UC_LookAndFind":
+                        {
+
+                            break;
+                        }
+                    default:
+                        {
+
+                            break;
+                        }
+                }
             }
+
         }
 
         private void imgbtnBack_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (Global.Instance.indexSelectActivity > 0)
+            if (userControl != null)
             {
-                Task.Run(() =>
+
+                //Xóa UC cũ
+
+                string x = userControl.GetType().ToString();
+                switch (x)
                 {
-                    this.Dispatcher.Invoke(() =>
-                    {
-                        IsEnableImageButton(false);
-                        if (UC_MultipleChoice.uC_MultipleChoice != null)
+                    case "GameLearnEnlish.UserControls.UC_Concentration":
                         {
-                            UC_MultipleChoice.uC_MultipleChoice.StopVoid();
-                        }
-                        if (UC_Matching.uC_Matching != null)
-                        {
-                            UC_Matching.uC_Matching.StopVoid();
-                        }
-                        if (BoxSubMenuUC.boxSubMenuUC != null)
-                        {
-                            BoxSubMenuUC.boxSubMenuUC.StopVoid();
-                        }
-                        if (UC_LookAndFind.uC_LookAndFind != null)
-                        {
-                            UC_LookAndFind.uC_LookAndFind.StopVoid();
-                        }
-                        Global.Instance.indexSelectActivity--;
-                        string nameTbl = "lblActivity" + Global.Instance.indexSelectActivity;
-                        BoxSubMenuUC.boxSubMenuUC.CallChangeActivity(nameTbl, SelectElementUC._Bt_unit);
-                        BoxSubMenuUC.boxSubMenuUC.UnitUCActivity(Global.Instance.UnitSelect, nameTbl);
 
-                    });
-                    Thread.Sleep(7000);
+                            break;
+                        }
+                    case "GameLearnEnlish.UserControls.UC_Matching":
+                        {
+                            StopAllMedia();
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Add(new PlacardUC());
+                            PlacardUC.placardUC.ChangeActivity("lblActivity1", SelectElementUC._Bt_unit);
+                            //Add uc vào main
+                            UC_Concentration UC_Activity = new UC_Concentration((int)Global.Instance.UnitSelect);
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Add(UC_Activity);
+                            HomeUC.userControl = UC_Activity;
 
-                }).ContinueWith((task) =>
-                {
-                    this.Dispatcher.Invoke(() =>
-                    {
-                        IsEnableImageButton(true);
-                    });
+                            break;
+                        }
+                    case "GameLearnEnlish.UserControls.UC_Sorting":
+                        {
+                            StopAllMedia();
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Add(new PlacardUC());
+                            PlacardUC.placardUC.ChangeActivity("lblActivity2", SelectElementUC._Bt_unit);
 
-                });
+
+                            UC_Matching UC_Activity = new UC_Matching((int)Global.Instance.UnitSelect);
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Add(UC_Activity);
+                            HomeUC.userControl = UC_Activity;
+                            break;
+                        }
+                    case "GameLearnEnlish.UserControls.UC_MultipleChoice":
+                        {
+                            StopAllMedia();
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Add(new PlacardUC());
+                            PlacardUC.placardUC.ChangeActivity("lblActivity3", SelectElementUC._Bt_unit);
+                            //Add uc vào main
+                            UC_Sorting UC_Activity = new UC_Sorting((int)Global.Instance.UnitSelect);
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Add(UC_Activity);
+                            HomeUC.userControl = UC_Activity;
+                            break;
+                        }
+                    case "GameLearnEnlish.UserControls.UC_Painting":
+                        {
+                            StopAllMedia();
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Add(new PlacardUC());
+                            PlacardUC.placardUC.ChangeActivity("lblActivity4", SelectElementUC._Bt_unit);
+                            //Add uc vào main
+                            UC_MultipleChoice UC_Activity = new UC_MultipleChoice((int)Global.Instance.UnitSelect);
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Add(UC_Activity);
+                            HomeUC.userControl = UC_Activity;
+                            break;
+                        }
+                    case "GameLearnEnlish.UserControls.UC_StoryTime":
+                        {
+                            StopAllMedia();
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Add(new PlacardUC());
+                            PlacardUC.placardUC.ChangeActivity("lblActivity5", SelectElementUC._Bt_unit);
+                            //Add uc vào main
+                            UC_Painting UC_Activity = new UC_Painting((int)Global.Instance.UnitSelect);
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Add(UC_Activity);
+                            HomeUC.userControl = UC_Activity;
+                            break;  
+                        }
+                    case "GameLearnEnlish.UserControls.UC_LookAndFind":
+                        {
+                            StopAllMedia();
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Clear();
+                            Global.Instance.WindowMain.grdPlacard.Children.Add(new PlacardUC());
+                            PlacardUC.placardUC.ChangeActivity("lblActivity6", SelectElementUC._Bt_unit);
+                            //Add uc vào main
+                            UC_StoryTime UC_Activity = new UC_StoryTime((int)Global.Instance.UnitSelect);
+                            Global.Instance.WindowMain.grdUC_Activity.Children.Add(UC_Activity);
+                            HomeUC.userControl = UC_Activity;
+                            break;
+                        }
+                    default:
+                        {
+
+                            break;
+                        }
+                }
             }
         }
 
         #region Volume
-        private double Delta = 0;
+        private static double volApp = 0;
         public double VolumnValue
         {
-            get { return Delta; }
+            get { return volApp; }
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void RaisePropertyChanged(string prop)
@@ -365,25 +483,25 @@ namespace GameLearnEnlish.UserControls
 
             if (moving)
             {
-                
+
                 Image l = e.Source as Image;
 
                 Point p = e.GetPosition(CanVasVol);
 
-                Delta = p.Y;
+                volApp = p.Y;
 
-                if (Delta > 0)
-                    Delta = 0;
-                if (Delta < 300)
-                    Delta = 300;
+                if (volApp < 0)
+                    volApp = 0;
+                if (volApp > 300)
+                    volApp = 300;
 
-           
+
                 RaisePropertyChanged("VolumnValue");
             }
 
 
 
-          
+
         }
         CoreAudioDevice defaultPlaybackDevice = new CoreAudioController().DefaultPlaybackDevice;
         private void imgBallVolume_MouseUp(object sender, MouseButtonEventArgs e)
@@ -391,10 +509,10 @@ namespace GameLearnEnlish.UserControls
             moving = false;
             Image l = e.Source as Image;
 
-            double vol = Delta / 3;
+            double vol = volApp / 3;
 
-            
-            defaultPlaybackDevice.Volume = vol;
+
+            defaultPlaybackDevice.Volume = 100 - vol;
             l.ReleaseMouseCapture();
         }
         #endregion

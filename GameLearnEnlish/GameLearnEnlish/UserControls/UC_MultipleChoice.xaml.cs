@@ -34,6 +34,7 @@ namespace GameLearnEnlish.UserControls
         private bool Answer2 = false;//Bấm vào câu trả lời 2
         private bool Answer3 = false;//Bấm vào câu trả lời 3
 
+        private int Score = 0;
 
         private readonly string VoidStart = @"..\..\media\audio\multiplechoice\title.mp3";//âm khi khởi động
 
@@ -48,6 +49,9 @@ namespace GameLearnEnlish.UserControls
         private MediaPlayer mediaPlayerVoid = new MediaPlayer();//Âm thanh câu hỏi
         private MediaPlayer mediaPlayerVoidCorrect = new MediaPlayer();//Âm thanh câu trả lời đúng
         private MediaPlayer mediaPlayerVoiInCorrect = new MediaPlayer();//Âm thanh câu trả lời sai
+
+        private MediaPlayer mediaVotay = new MediaPlayer();
+
         //Hình ảnh
         private Uri ImgCorrect = new Uri(@"..\..\media\textures\multipleChoice\correct.png", UriKind.Relative);//image khi chọn câu trả lời đúng
         private Uri ImgInCorrect = new Uri(@"..\..\media\textures\multipleChoice\wrong.png", UriKind.Relative);//image khi chọn câu trả lời sai
@@ -59,7 +63,7 @@ namespace GameLearnEnlish.UserControls
         private List<int> ListVoidSort = new List<int>();//vị trí của 3 âm thanh.
         private List<string> ListVoidWord = new List<string>();//danh sách âm thanh của từ
 
-
+    
         public UC_MultipleChoice(int unit)
         {
             uC_MultipleChoice = this;
@@ -69,7 +73,7 @@ namespace GameLearnEnlish.UserControls
             //Clear các âm thanh và câu hỏi trong danh sách
             ListVoidWord.Clear();
             ListVoidSort.Clear();
-
+            Score = 0;
             try
             {
                 CreateQuestionAndAnswer();//Khởi tạo danh sách câu hỏi và câu trả lời ngẫu nhiên
@@ -83,6 +87,9 @@ namespace GameLearnEnlish.UserControls
                 //Âm thanh Description
                 mediaPlayerVoiceDescription.Open(new Uri(VoiceDescription, UriKind.Relative));
                 mediaPlayerVoiceDescription.Stop();
+
+                mediaVotay.Open(new Uri(@"..\..\media\audio\tiengvotay.mp3", UriKind.Relative));
+                mediaVotay.MediaEnded += MediaVotay_MediaEnded;
 
                 //Âm thanh câu hỏi khi bắt đầu khởi động game
                 mediaPlayerVoid.Open(new Uri(ListVoidWord[CountQuestion], UriKind.Relative));
@@ -113,7 +120,10 @@ namespace GameLearnEnlish.UserControls
                 MessageBox.Show("Lỗi khi khởi tạo UserControl!");
             }
         }
-
+        private void MediaVotay_MediaEnded(object sender, EventArgs e)
+        {
+            mediaVotay.Stop();
+        }
         public void StopVoid()//Tắt âm thanh
         {
             mediaPlayerVoiInCorrect.Stop();
@@ -135,6 +145,7 @@ namespace GameLearnEnlish.UserControls
                 #region media
 
                 mediaPlayerVoidCorrect.Open(new Uri(VoidCorrect, UriKind.Relative));
+                mediaPlayerVoidCorrect.MediaEnded += MediaPlayerVoidCorrect_MediaEnded;
                 mediaPlayerVoiInCorrect.Open(new Uri(VoidInCorrect, UriKind.Relative));
                 #endregion
 
@@ -197,8 +208,6 @@ namespace GameLearnEnlish.UserControls
                                     ListVoidSort.Add(rand);
                                     temp = true;
                                 }
-
-
                             }
                         }
                     }
@@ -222,6 +231,19 @@ namespace GameLearnEnlish.UserControls
             });
         }
 
+        private void MediaPlayerVoidCorrect_MediaEnded(object sender, EventArgs e)
+        {
+            CheckScore();
+        }
+        private void CheckScore()
+        {
+            if (Score >= 3)
+            {
+                GridMain.Visibility = Visibility.Hidden;
+                Votay.Visibility = Visibility;
+                mediaVotay.Play();
+            }
+        }
         public void StartApp()//Không thao tác đến khi khởi động xong
         {
             this.Dispatcher.Invoke(() =>
@@ -389,6 +411,8 @@ namespace GameLearnEnlish.UserControls
                         imgAnswer1.Source = new BitmapImage(ImgCorrect);//Hình đúng
                         imgAnswer1.Visibility = Visibility.Visible;
                         CountQuestion++;//Nếu trả lời đúng thì tăng số câu hỏi lên 1
+
+                        Score++;
                     }
                     else
                     {
@@ -465,7 +489,7 @@ namespace GameLearnEnlish.UserControls
                         imgAnswer2.Visibility = Visibility.Visible;
 
                         CountQuestion++;//Nếu trả lời đúng thì tăng số câu hỏi lên 1
-
+                        Score++;
 
                     }
                     else
@@ -540,7 +564,7 @@ namespace GameLearnEnlish.UserControls
                         imgAnswer3.Source = new BitmapImage(ImgCorrect);
                         imgAnswer3.Visibility = Visibility.Visible;
                         CountQuestion++;//Nếu trả lời đúng thì tăng số câu hỏi lên 1
-
+                        Score++;
 
                     }
                     else
@@ -606,6 +630,7 @@ namespace GameLearnEnlish.UserControls
             mediaPlayerVoid.Stop();
             mediaPlayerVoidCorrect.Stop(); 
             mediaPlayerVoiInCorrect.Stop();
+            mediaVotay.Stop();
         }
     }
 }

@@ -5,31 +5,38 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GameLearnEnlish.UserControls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+              xmlns:gif ="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
              mc:Ignorable="d" >
-    <materialDesign:TransitioningContent>
-        <materialDesign:TransitioningContent.OpeningEffects>
-            <materialDesign:TransitionEffect Kind="FadeIn" Duration="0:0:0.3"/>
-            <materialDesign:TransitionEffect Kind="ExpandIn" Duration="0:0:0.3"/>
-        </materialDesign:TransitioningContent.OpeningEffects>
-        <Canvas x:Name="cavdUnit">
-            <Canvas x:Name="cavdimgCovert">
-                <Image x:Name="imgCover" Source="..\media\textures\lookandfind\act1\cover.png" Stretch="Uniform" Height="510" Width="800"/>
 
+    <Grid>
+        <materialDesign:TransitioningContent>
+            <materialDesign:TransitioningContent.OpeningEffects>
+                <materialDesign:TransitionEffect Kind="FadeIn" Duration="0:0:0.3"/>
+                <materialDesign:TransitionEffect Kind="ExpandIn" Duration="0:0:0.3"/>
+            </materialDesign:TransitioningContent.OpeningEffects>
+            <Canvas x:Name="cavdUnit">
+                <Canvas x:Name="cavdimgCovert">
+                    <Image x:Name="imgCover" Source="..\media\textures\lookandfind\act1\cover.png" Stretch="Uniform" Height="510" Width="800"/>
+
+                </Canvas>
+
+                <Canvas x:Name="cavdimgObj1">
+                    <Image x:Name="imgObj1" Source="..\media\textures\lookandfind\act1\obj1.png" Stretch="None" MouseLeftButtonDown="imgObj1_MouseLeftButtonDown"/>
+                </Canvas>
+
+                <Canvas x:Name="cavdimgObj2">
+                    <Image x:Name="imgObj2" Source="..\media\textures\lookandfind\act1\obj2.png" Stretch="None" MouseLeftButtonDown="imgObj2_MouseLeftButtonDown"/>
+
+                </Canvas>
+
+                <Canvas x:Name="cavdimgObj3">
+                    <Image x:Name="imgObj3" Source="..\media\textures\lookandfind\act1\obj3.png" Stretch="None" MouseLeftButtonDown="imgObj3_MouseLeftButtonDown"/>
+
+                </Canvas>
             </Canvas>
+        </materialDesign:TransitioningContent>
+        <Image x:Name="Votay" Visibility="Hidden" Stretch="Fill" Width="256" Height="256" gif:AnimationBehavior.SourceUri="..\media\textures\global\votay256x256.gif" ></Image>
 
-            <Canvas x:Name="cavdimgObj1">
-                <Image x:Name="imgObj1" Source="..\media\textures\lookandfind\act1\obj1.png" Stretch="None" MouseLeftButtonDown="imgObj1_MouseLeftButtonDown"/>
-            </Canvas>
-
-            <Canvas x:Name="cavdimgObj2">
-                <Image x:Name="imgObj2" Source="..\media\textures\lookandfind\act1\obj2.png" Stretch="None" MouseLeftButtonDown="imgObj2_MouseLeftButtonDown"/>
-
-            </Canvas>
-
-            <Canvas x:Name="cavdimgObj3">
-                <Image x:Name="imgObj3" Source="..\media\textures\lookandfind\act1\obj3.png" Stretch="None" MouseLeftButtonDown="imgObj3_MouseLeftButtonDown"/>
-
-            </Canvas>
-        </Canvas>
-    </materialDesign:TransitioningContent>
+    </Grid>
+ 
 </UserControl>

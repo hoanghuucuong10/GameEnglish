@@ -34,15 +34,17 @@ namespace GameLearnEnlish.UserControls
 
         private readonly string VoidCorrect = @"..\..\media\audio\global\right.mp3";//âm khi chọn đúng
         private MediaPlayer mediaPlayerVoidCorrect = new MediaPlayer();//Âm thanh câu trả lời đúng
+
         private MediaPlayer mediaPlayerVoiceDescription = new MediaPlayer();//Khởi tạo âm Description
 
 
         private readonly string VoiceTitle = @"..\..\media\audio\lookandfind\title.mp3";//âm thanh title
         private MediaPlayer mediaPlayerVoidStart = new MediaPlayer();//Khởi tạo //âm thanh title
 
+        private MediaPlayer mediaVotay = new MediaPlayer();
 
         private string TextDescription = "Look and find. Click on each chair you see.";//Nội dung Description
-
+        private int Score = 0;
 
         private string VoiceDescription = @"..\..\media\audio\lookandfind\act1\description.mp3";//âm description
 
@@ -53,7 +55,10 @@ namespace GameLearnEnlish.UserControls
         private DropShadowBitmapEffect myDropShadowEffect;//Bóng đổ
         private Color myShadowColor; // Màu bóng đổ
 
-
+        private void MediaVotay_MediaEnded(object sender, EventArgs e)
+        {
+            mediaVotay.Stop();
+        }
 
         public UC_LookAndFind(int unit)
         {
@@ -74,6 +79,8 @@ namespace GameLearnEnlish.UserControls
                 Global.Instance.WindowMain.grdUC_Description.Children.Add(new UC_Description());
                 UC_Description.uC_Description.CallTextDescription(TextDescription);
 
+                mediaVotay.Open(new Uri(@"..\..\media\audio\tiengvotay.mp3", UriKind.Relative));
+                mediaVotay.MediaEnded += MediaVotay_MediaEnded;
                 //Âm thanh Description
                 mediaPlayerVoiceDescription.Open(new Uri(VoiceDescription, UriKind.Relative));
                 mediaPlayerVoiceDescription.Stop();
@@ -156,6 +163,22 @@ namespace GameLearnEnlish.UserControls
             // The range is 0-1.
             myDropShadowEffect.Opacity = 0.5;
         }
+
+        private void MediaPlayerVoidCorrect_MediaEnded(object sender, EventArgs e)
+        {
+            CheckScore();
+        }
+        private void CheckScore()
+        {
+            if (Score >= 3)
+            {
+                cavdUnit.Visibility = Visibility.Hidden;
+                Votay.Visibility = Visibility;
+                mediaVotay.Play();
+            }
+        }
+
+
         private void CreateListImg(int Unit)
         {
             try
@@ -167,11 +190,6 @@ namespace GameLearnEnlish.UserControls
                 //Hình cover
                 UriImgCover = @"..\..\media\textures\lookandfind\act" + Unit + @"\cover.png";
 
-                //Hình ảnh chọn
-                //ListUriImgObj = new List<string>() {
-                //@"..\..\media\textures\lookandfind\act"+ Unit + @"\obj1.png",
-                //@"..\..\media\textures\lookandfind\act"+ Unit + @"\obj2.png",
-                //@"..\..\media\textures\lookandfind\act"+ Unit + @"\obj3.png"};
 
                 ListUriImgObj = new List<string>() { lstWord[0].Image, lstWord[1].Image, lstWord[2].Image };
 
@@ -329,8 +347,10 @@ namespace GameLearnEnlish.UserControls
                 imgObj1.IsEnabled = false;
                 StopVoid();//Tắt âm thanh
                 mediaPlayerVoidCorrect.Open(new Uri(VoidCorrect, UriKind.Relative));
+                mediaPlayerVoidCorrect.MediaEnded += MediaPlayerVoidCorrect_MediaEnded;
                 mediaPlayerVoidCorrect.Play();//Phát âm trả lời đúng
                 imgObj1.BitmapEffect = myDropShadowEffect;//Dổ bóng khi chọn đúng
+                Score++;
             }
             catch (Exception)
             {
@@ -349,6 +369,7 @@ namespace GameLearnEnlish.UserControls
                 mediaPlayerVoidCorrect.Open(new Uri(VoidCorrect, UriKind.Relative));
                 mediaPlayerVoidCorrect.Play();//Phát âm trả lời đúng
                 imgObj2.BitmapEffect = myDropShadowEffect;//Dổ bóng khi chọn đúng
+                Score++;
             }
             catch (Exception)
             {
@@ -367,6 +388,7 @@ namespace GameLearnEnlish.UserControls
                 mediaPlayerVoidCorrect.Open(new Uri(VoidCorrect, UriKind.Relative));
                 mediaPlayerVoidCorrect.Play();//Phát âm trả lời đúng
                 imgObj3.BitmapEffect = myDropShadowEffect;//Đổ bóng khi chọn đúng
+                Score++;
             }
             catch (Exception)
             {
@@ -381,6 +403,7 @@ namespace GameLearnEnlish.UserControls
             mediaPlayerVoiceDescription.Stop();
             mediaPlayerVoidCorrect.Stop();
             mediaPlayerVoidStart.Stop();
+            mediaVotay.Stop(); 
         }
     }
 }
