@@ -56,6 +56,7 @@
     <Compile Include="Concentration.cs">
       <DependentUpon>EnglishGameDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="ConcentrationDAL.cs" />
     <Compile Include="EnglishGameDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -74,22 +75,29 @@
     <Compile Include="LookAndFind.cs">
       <DependentUpon>EnglishGameDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="LookAndFindDAL.cs" />
     <Compile Include="Matching.cs">
       <DependentUpon>EnglishGameDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="MatchingDAL.cs" />
+    <Compile Include="MultipleChoiceDAL.cs" />
     <Compile Include="Painting.cs">
       <DependentUpon>EnglishGameDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="PaintingDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sorting.cs">
       <DependentUpon>EnglishGameDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="SortingDAL.cs" />
     <Compile Include="Storytime.cs">
       <DependentUpon>EnglishGameDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="StorytimeDAL.cs" />
     <Compile Include="Unit.cs">
       <DependentUpon>EnglishGameDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="UnitDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
@@ -116,6 +124,12 @@
       <DependentUpon>EnglishGameDB.edmx</DependentUpon>
       <LastGenOutput>EnglishGameDB.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{9759b211-cb7d-4daf-92ac-e5af2f863f63}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

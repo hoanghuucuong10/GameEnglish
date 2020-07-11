@@ -28,7 +28,7 @@ namespace GameLearnEnlish.UserControls
     {
         public static MenuUC menuUC = null;
         public SelectElementUC ButtonSelect;
-        List<Data.Unit> units = new List<Data.Unit>();
+        public List<Data.Unit> units = new List<Data.Unit>();
         #region [Khởi tạo âm thanh các unit]
         private MediaPlayer mplayer1 = new MediaPlayer();
         private MediaPlayer mplayer2 = new MediaPlayer();
@@ -118,11 +118,11 @@ namespace GameLearnEnlish.UserControls
         {
             Global.Instance.WindowMain.grdMenu_GlobeUC.Children.Clear();
             Global.Instance.WindowMain.grdMenu_GlobeUC.Children.Add(new Menu_GlobeUC());
-            Menu_GlobeUC.menu_GlobeUC.ChangeUnit(NameBtnImage);//Đổi unit cho menu_globe
 
             Global.Instance.WindowMain.grdBoxSubMenuUC.Children.Clear();
             Global.Instance.WindowMain.grdBoxSubMenuUC.Children.Add(new BoxSubMenuUC());
             BoxSubMenuUC.boxSubMenuUC.ChangeUnit(NameBtnImage);//Đổi các lable activity cho boxsubmenu
+ 
         }
 
         public void IsVisibleButtonClick(string NameButton) //Hiện nút khi được click
@@ -324,26 +324,6 @@ namespace GameLearnEnlish.UserControls
                             mplayer8.Play();//Phát âm thanh của unit
                             break;
                         }
-                    //case "imgBt_AS":
-                    //    {
-                    //        imgBt_AS.Source = new BitmapImage(uriImgAs);//Hiển thị hình ảnh over
-                    //        IsVisibleButtonClick(nameBtn.Name);
-                    //        Global.Instance.ButtonMenuSelect = SelectElementUC._imgBt_AS;//Nút trên menu được click là nút nào
-                    //        Global.Instance.UnitSelect = Unit._AS;//Unit nào được chọn
-
-                    //        mplayerAs.Play();//Phát âm thanh của unit
-                    //        break;
-                    //    }
-                    //case "imgBt_Phonics":
-                    //    {
-                    //        imgBt_Phonics_click.Source = new BitmapImage(uriImgPhonics);//Hiển thị hình ảnh over
-                    //        IsVisibleButtonClick(nameBtn.Name);
-                    //        Global.Instance.ButtonMenuSelect = SelectElementUC._imgBt_Phonics;//Nút trên menu được click là nút nào
-                    //        Global.Instance.UnitSelect = Unit._Phonics;//Unit nào được chọn
-
-                    //        mplayerPhonics.Play();//Phát âm thanh của unit
-                    //        break;
-                    //    }
                     default:
                         break;
                 }
@@ -407,18 +387,6 @@ namespace GameLearnEnlish.UserControls
                             imgBt_unit_8.Source = new BitmapImage(uri);
                             break;
                         }
-                    //case "imgBt_AS":
-                    //    {
-                    //        Uri uri = new Uri(@"\media\textures\global\Bt_AS.png", UriKind.Relative);
-                    //        imgBt_AS.Source = new BitmapImage(uri);
-                    //        break;
-                    //    }
-                    //case "imgBt_Phonics":
-                    //    {
-                    //        Uri uri = new Uri(@"\media\textures\global\Bt_Phonics.png", UriKind.Relative);
-                    //        imgBt_Phonics.Source = new BitmapImage(uri);
-                    //        break;
-                    //    }
                     default:
                         break;
                 }
@@ -435,64 +403,44 @@ namespace GameLearnEnlish.UserControls
                 {
                     case "imgBt_unit_1":
                         {
-                          //  Uri uri = new Uri(@"\media\textures\global\Bt_unit_1.png", UriKind.Relative);
                             imgBt_unit_1.Source = new BitmapImage(uriImg1);
                             break;
                         }
                     case "imgBt_unit_2":
                         {
-                         //   Uri uri = new Uri(@"\media\textures\global\Bt_unit_2.png", UriKind.Relative);
                             imgBt_unit_2.Source = new BitmapImage(uriImg2);
                             break;
                         }
                     case "imgBt_unit_3":
                         {
-                           // Uri uri = new Uri(@"\media\textures\global\Bt_unit_3.png", UriKind.Relative);
                             imgBt_unit_3.Source = new BitmapImage(uriImg3);
                             break;
                         }
                     case "imgBt_unit_4":
                         {
-                           // Uri uri = new Uri(@"\media\textures\global\Bt_unit_4.png", UriKind.Relative);
                             imgBt_unit_4.Source = new BitmapImage(uriImg4);
                             break;
                         }
                     case "imgBt_unit_5":
                         {
-                          //  Uri uri = new Uri(@"\media\textures\global\Bt_unit_5.png", UriKind.Relative);
                             imgBt_unit_5.Source = new BitmapImage(uriImg5);
                             break;
                         }
                     case "imgBt_unit_6":
                         {
-                           // Uri uri = new Uri(@"\media\textures\global\Bt_unit_6.png", UriKind.Relative);
                             imgBt_unit_6.Source = new BitmapImage(uriImg6);
                             break;
                         }
                     case "imgBt_unit_7":
                         {
-                          //  Uri uri = new Uri(@"\media\textures\global\Bt_unit_7.png", UriKind.Relative);
                             imgBt_unit_7.Source = new BitmapImage(uriImg7);
                             break;
                         }
                     case "imgBt_unit_8":
                         {
-                           // Uri uri = new Uri(@"\media\textures\global\Bt_unit_8.png", UriKind.Relative);
                             imgBt_unit_8.Source = new BitmapImage(uriImg8);
                             break;
                         }
-                    //case "imgBt_AS":
-                    //    {
-                    //        Uri uri = new Uri(@"\media\textures\global\Bt_AS.png", UriKind.Relative);
-                    //        imgBt_AS.Source = new BitmapImage(uri);
-                    //        break;
-                    //    }
-                    //case "imgBt_Phonics":
-                    //    {
-                    //        Uri uri = new Uri(@"\media\textures\global\Bt_Phonics.png", UriKind.Relative);
-                    //        imgBt_Phonics.Source = new BitmapImage(uri);
-                    //        break;
-                    //    }
                     default:
                         break;
                 }
@@ -564,20 +512,6 @@ namespace GameLearnEnlish.UserControls
                             imgBt_unit_8.Stretch = Stretch.Uniform;
                             break;
                         }
-                    //case "imgBt_AS":
-                    //    {
-                    //        Uri uri = new Uri(units[8].ImageButtonOver, UriKind.Relative);
-                    //        imgBt_AS.Source = new BitmapImage(uri);
-                    //        imgBt_AS.Stretch = Stretch.Uniform;
-                    //        break;
-                    //    }
-                    //case "imgBt_Phonics":
-                    //    {
-                    //        Uri uri = new Uri(units[9].ImageButtonOver, UriKind.Relative);
-                    //        imgBt_Phonics.Source = new BitmapImage(uri);
-                    //        imgBt_Phonics.Stretch = Stretch.Uniform;
-                    //        break;
-                    //    }
                     default:
                         break;
                 }

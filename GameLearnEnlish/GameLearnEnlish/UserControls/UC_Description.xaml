@@ -6,6 +6,6 @@
              xmlns:local="clr-namespace:GameLearnEnlish.UserControls"
              mc:Ignorable="d">
     <Grid>
-        <TextBlock TextWrapping="Wrap" x:Name="txtDescription" Grid.Column="1" Grid.Row="1" FontSize="25" Text="Listen and match" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock TextWrapping="Wrap" x:Name="txtDescription" Grid.Column="1" Grid.Row="1" FontSize="25" Text="" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

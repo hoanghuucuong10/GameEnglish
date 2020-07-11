@@ -185,10 +185,12 @@ namespace GameLearnEnlish.UserControls
             {
                 lstWord = new LookAndFindBLL().GetLookAndFinds(Unit);
                 //Âm thanh Description
-                VoiceDescription = @"..\..\media\audio\lookandfind\act"+ Unit + @"\description.mp3";//âm description
+                //VoiceDescription = @"..\..\media\audio\lookandfind\act"+ Unit + @"\description.mp3";//âm description
+                VoiceDescription = lstWord[0].Voice;//âm description
 
                 //Hình cover
-                UriImgCover = @"..\..\media\textures\lookandfind\act" + Unit + @"\cover.png";
+                //UriImgCover = @"..\..\media\textures\lookandfind\act" + Unit + @"\cover.png";
+                UriImgCover = lstWord[0].ImageCover;
 
 
                 ListUriImgObj = new List<string>() { lstWord[0].Image, lstWord[1].Image, lstWord[2].Image };
@@ -204,7 +206,7 @@ namespace GameLearnEnlish.UserControls
                     case 1:
                         {
                             //Text title
-                            TextDescription = "Look and fine. Click on each chair you see";
+                            TextDescription = lstWord[0].Title;
                             //Set tọa độ hình 
                             Canvas.SetLeft(imgObj1, 290.0);
                             Canvas.SetTop(imgObj1, 60.0);
@@ -221,7 +223,7 @@ namespace GameLearnEnlish.UserControls
                     case 2:
                         {
                             //Text title
-                            TextDescription = "Look and fine. Click on each bee you see";
+                            TextDescription = lstWord[0].Title;
                             //Set tọa độ hình 
                             Canvas.SetLeft(imgObj1, 650.0);
                             Canvas.SetTop(imgObj1, 20.0);
@@ -236,7 +238,7 @@ namespace GameLearnEnlish.UserControls
                     case 3:
                         {
                             //Text title
-                            TextDescription = "Look and fine. Click on each blue crayon you see";
+                            TextDescription = lstWord[0].Title;
                             //Set tọa độ hình 
                             Canvas.SetLeft(imgObj1, 450.0);
                             Canvas.SetTop(imgObj1, 250.0);
@@ -251,7 +253,7 @@ namespace GameLearnEnlish.UserControls
                     case 4:
                         {
                             //Text title
-                            TextDescription = "Look and fine. Click on each butterfly you see";
+                            TextDescription = lstWord[0].Title;
                             //Set tọa độ hình 
                             Canvas.SetLeft(imgObj1, 450.0);
                             Canvas.SetTop(imgObj1, 250.0);
@@ -266,7 +268,7 @@ namespace GameLearnEnlish.UserControls
                     case 5:
                         {
                             //Text title
-                            TextDescription = "Look and fine. Click on each red rectangle you see";
+                            TextDescription = lstWord[0].Title;
                             //Set tọa độ hình 
                             Canvas.SetLeft(imgObj1, 650.0);
                             Canvas.SetTop(imgObj1, 155.0);
@@ -281,7 +283,7 @@ namespace GameLearnEnlish.UserControls
                     case 6:
                         {
                             //Text title
-                            TextDescription = "Look and fine. Click on each toy car you see";
+                            TextDescription = lstWord[0].Title;
 
                             //Set tọa độ hình 
                             Canvas.SetLeft(imgObj1, 370.0);
@@ -297,7 +299,7 @@ namespace GameLearnEnlish.UserControls
                     case 7:
                         {
                             //Text title
-                            TextDescription = "Look and fine. Click on each white bird you see";
+                            TextDescription = lstWord[0].Title;
 
                             //Set tọa độ hình 
                             Canvas.SetLeft(imgObj1, 620.0);
@@ -313,7 +315,7 @@ namespace GameLearnEnlish.UserControls
                     case 8:
                         {
                             //Text title
-                            TextDescription = "Look and fine. Click on each cat you see";
+                            TextDescription = lstWord[0].Title;
                             //Set tọa độ hình 
                             Canvas.SetLeft(imgObj1, 420.0);
                             Canvas.SetTop(imgObj1, 200.0);
@@ -403,7 +405,7 @@ namespace GameLearnEnlish.UserControls
             mediaPlayerVoiceDescription.Stop();
             mediaPlayerVoidCorrect.Stop();
             mediaPlayerVoidStart.Stop();
-            mediaVotay.Stop(); 
+            mediaVotay.Stop();
         }
     }
 }

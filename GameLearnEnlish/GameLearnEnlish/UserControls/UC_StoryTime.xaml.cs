@@ -1,24 +1,15 @@
 ﻿using BLL;
 using Data;
-using MaterialDesignThemes.Wpf;
+using GameLearnEnlish.Utility;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace GameLearnEnlish.UserControls
 {
@@ -52,6 +43,8 @@ namespace GameLearnEnlish.UserControls
         private int IndexMedia = 0;
         private bool IsFullSoundClick = false;
 
+      
+
         int firstPage = 0;
         int lastPage = 0;
 
@@ -62,6 +55,9 @@ namespace GameLearnEnlish.UserControls
             mediaTitle.MediaEnded += MediaTitle_MediaEnded;
             mediaDescription.Open(new Uri(@"..\..\media\audio\storytime\description.mp3", UriKind.Relative));
             mediaDescription.MediaEnded += MediaDescription_MediaEnded;
+
+            UC_Description.uC_Description.CallTextDescription("Look, listen, and read along with the story.");
+
             InitializeComponent();
 
             #region GetData

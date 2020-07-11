@@ -31,7 +31,7 @@ namespace GameLearnEnlish.UserControls
         private void imgbtnExit_bt_yes_MouseDown(object sender, MouseButtonEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
-            //Global.Instance.WindowMain.Close();
+         //   Global.Instance.WindowMain.Close();
         }
 
         private void imgbtnExit_bt_no_MouseDown(object sender, MouseButtonEventArgs e)

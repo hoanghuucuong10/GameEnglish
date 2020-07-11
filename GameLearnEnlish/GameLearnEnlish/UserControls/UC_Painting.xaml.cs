@@ -128,6 +128,7 @@ namespace GameLearnEnlish.UserControls
 
             mediaDescription.Open(new Uri(@"..\..\media\audio\painting\description.mp3", UriKind.Relative));
             mediaDescription.MediaEnded += MediaDescription_MediaEnded;
+            UC_Description.uC_Description.CallTextDescription("Look, listen, and color.");
 
             InitializeComponent();
             CreateData();

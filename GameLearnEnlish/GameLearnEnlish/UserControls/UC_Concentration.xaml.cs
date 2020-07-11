@@ -32,8 +32,8 @@ namespace GameLearnEnlish.UserControls
 
         private List<Data.Concentration> lstWord = new List<Data.Concentration>();
 
-        private List<string> ListImgWord = new List<string>();//danh sách hình ảnh của từ
-        private List<int> ListImgSort = new List<int>();//vị trí của 3 bức ảnh.
+        private List<string> ListImgWord = new List<string>();//danh sách hình ảnh của từ được lấy trong db
+        private List<int> ListImgSort = new List<int>();//vị trí của 3 bức ảnh trên màn hình
         private List<string> ListVoiceWord;//danh sách âm thanh của từ
 
         private bool[] hasOpened; // false: hình đang úp, true: hình đang mở
@@ -90,7 +90,7 @@ namespace GameLearnEnlish.UserControls
 
             mediaDescription.Open(new Uri(@"..\..\media\audio\concentration\description.mp3", UriKind.Relative));
             mediaDescription.MediaEnded += MediaDescription_MediaEnded;
-
+            UC_Description.uC_Description.CallTextDescription("Look and listen. Match.");
             InitializeComponent();
             mediaTitle.Play();
             CreateImgAndVoice(Unit);

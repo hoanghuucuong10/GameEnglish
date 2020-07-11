@@ -37,14 +37,19 @@ namespace GameLearnEnlish.UserControls
         private Uri uriClose;
         public static UserControl userControl = null;
 
+        public static double volumeApp = 0;
 
         public HomeUC()
         {
             homeUC = this;
             InitializeComponent();
+            ChangeUnintTitleInMain("");
             this.DataContext = this;
+            Global.Instance.WindowMain.grdUC_Description.Children.Clear();
+            Global.Instance.WindowMain.grdUC_Description.Children.Add(new UC_Description());
             grdHome.Visibility = Visibility.Visible;
 
+            Global.Instance.homeUC = this;
             #region [Hình ảnh]
             uriClose = new Uri(@"..\..\media\audio\global\clickbutton.mp3", UriKind.Relative);
             #endregion
@@ -67,12 +72,12 @@ namespace GameLearnEnlish.UserControls
             }
 
             //Set volume img
-            volApp = defaultPlaybackDevice.Volume * 3;
+            volApp = 100-defaultPlaybackDevice.Volume;
             RaisePropertyChanged("VolumnValue");
 
         }
 
-        public void StopVoid()//Tắt âm thanh
+        public void StopVoice()//Tắt âm thanh
         {
             mplayerClose.Stop();
         }
@@ -464,7 +469,7 @@ namespace GameLearnEnlish.UserControls
         private static double volApp = 0;
         public double VolumnValue
         {
-            get { return volApp; }
+            get { return volApp*3; }
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void RaisePropertyChanged(string prop)
@@ -488,20 +493,16 @@ namespace GameLearnEnlish.UserControls
 
                 Point p = e.GetPosition(CanVasVol);
 
-                volApp = p.Y;
+                volApp = p.Y/3;
 
                 if (volApp < 0)
                     volApp = 0;
-                if (volApp > 300)
-                    volApp = 300;
+                if (volApp > 100)
+                    volApp = 100;
 
 
                 RaisePropertyChanged("VolumnValue");
             }
-
-
-
-
         }
         CoreAudioDevice defaultPlaybackDevice = new CoreAudioController().DefaultPlaybackDevice;
         private void imgBallVolume_MouseUp(object sender, MouseButtonEventArgs e)
@@ -509,12 +510,16 @@ namespace GameLearnEnlish.UserControls
             moving = false;
             Image l = e.Source as Image;
 
-            double vol = volApp / 3;
+            volumeApp = 100 - volApp;
 
-
-            defaultPlaybackDevice.Volume = 100 - vol;
+            defaultPlaybackDevice.Volume = volumeApp;
             l.ReleaseMouseCapture();
         }
         #endregion
+
+        public void ChangeUnintTitleInMain(string uTitle)
+        {
+            lbUnit.Content=uTitle;
+        }
     }
 }

@@ -5,21 +5,22 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="66699c88df004db6bda100c8514a1771" Name="Diagram1">
-        <EntityTypeShape EntityType="EnglishGameModel.Choice" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="EnglishGameModel.Concentration" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="EnglishGameModel.LookAndFind" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EnglishGameModel.Matching" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EnglishGameModel.Painting" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EnglishGameModel.Sorting" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EnglishGameModel.Storytime" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EnglishGameModel.Unit" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="EnglishGameModel.ChoiceOfUnit" ManuallyRouted="false" />
-        <AssociationConnector Association="EnglishGameModel.ConcentrationOfUnit" ManuallyRouted="false" />
-        <AssociationConnector Association="EnglishGameModel.LookAndFindOfUnit" ManuallyRouted="false" />
-        <AssociationConnector Association="EnglishGameModel.MatchingOfUnit" ManuallyRouted="false" />
-        <AssociationConnector Association="EnglishGameModel.PaintingOfUnit" ManuallyRouted="false" />
-        <AssociationConnector Association="EnglishGameModel.SortingOfUnit" ManuallyRouted="false" />
-        <AssociationConnector Association="EnglishGameModel.StorytimeOfUnit" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EnglishGameModel.Choice" Width="1.5" PointX="0.75" PointY="2.125" />
+        <EntityTypeShape EntityType="EnglishGameModel.Concentration" Width="1.5" PointX="5.25" PointY="2.125" />
+        <EntityTypeShape EntityType="EnglishGameModel.LookAndFind" Width="1.5" PointX="0.75" PointY="13.375" />
+        <EntityTypeShape EntityType="EnglishGameModel.Matching" Width="1.5" PointX="0.75" PointY="8.125" />
+        <EntityTypeShape EntityType="EnglishGameModel.Painting" Width="1.5" PointX="0.75" PointY="16.75" />
+        <EntityTypeShape EntityType="EnglishGameModel.Sorting" Width="1.5" PointX="0.75" PointY="5.625" />
+        <EntityTypeShape EntityType="EnglishGameModel.Storytime" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="EnglishGameModel.Unit" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="EnglishGameModel.FK_LookAndFind_LookAndFind" />
+        <AssociationConnector Association="EnglishGameModel.ChoiceOfUnit" />
+        <AssociationConnector Association="EnglishGameModel.ConcentrationOfUnit" />
+        <AssociationConnector Association="EnglishGameModel.LookAndFindOfUnit" />
+        <AssociationConnector Association="EnglishGameModel.MatchingOfUnit" />
+        <AssociationConnector Association="EnglishGameModel.PaintingOfUnit" />
+        <AssociationConnector Association="EnglishGameModel.SortingOfUnit" />
+        <AssociationConnector Association="EnglishGameModel.StorytimeOfUnit" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

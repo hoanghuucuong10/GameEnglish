@@ -169,36 +169,7 @@ namespace GameLearnEnlish.UserControls
                             imgMenu_Globe_U.Source = new BitmapImage(uriImg8);
                             break;
                         }
-                    case "imgBt_AS":
-                        {
-                            ButtonSelect = SelectElementUC._imgBt_AS;//Nút nhấn là As
-                            lblTheme.Content = "Animated Stories";
-                            lblActivity1.Content = "Unit 1: School Days";
-                            lblActivity2.Content = "Unit 2: What Is This?";
-                            lblActivity3.Content = "Unit 3: My Family";
-                            lblActivity4.Content = "Unit 4: Dolhouse";
-                            lblActivity5.Content = "Unit 5: A Suprise";
-                            lblActivity6.Content = "Unit 6: Let's Play";
-                            lblActivity7.Content = "Unit 7: Where's Lucy?";
 
-                            imgMenu_Globe_U.Source = new BitmapImage(uriImgAs);
-                            break;
-                        }
-                    case "imgBt_Phonics":
-                        {
-                            ButtonSelect = SelectElementUC._imgBt_Phonics;//Nút nhấn là phonics
-                            lblTheme.Content = "Phonics";
-                            lblActivity1.Content = "Activity 1: Concentration";
-                            lblActivity2.Content = "Activity 2: Matching";
-                            lblActivity3.Content = "Activity 3: Sorting";
-                            lblActivity4.Content = "Activity 4: Look and Find";
-                            lblActivity5.Content = "";
-                            lblActivity6.Content = "";
-                            lblActivity7.Content = "";
-
-                            imgMenu_Globe_U.Source = new BitmapImage(uriImgPhonics);
-                            break;
-                        }
                     default:
                         break;
                 }
@@ -383,6 +354,52 @@ namespace GameLearnEnlish.UserControls
                 default:
                     break;
             }
+
+            switch ((int)unit)
+            {
+                case 1:
+                    {
+                        Global.Instance.homeUC.ChangeUnintTitleInMain("Unit " + units[0].Number + ": " + units[0].Title);
+                        break;
+                    }
+                case 2:
+                    {
+                        Global.Instance.homeUC.ChangeUnintTitleInMain("Unit " + units[1].Number + ": " + units[1].Title);
+                        break;
+                    }
+                case 3:
+                    {
+                        Global.Instance.homeUC.ChangeUnintTitleInMain("Unit " + units[2].Number + ": " + units[2].Title);
+                        break;
+                    }
+                case 4:
+                    {
+                        Global.Instance.homeUC.ChangeUnintTitleInMain("Unit " + units[3].Number + ": " + units[3].Title);
+                        break;
+                    }
+                case 5:
+                    {
+                        Global.Instance.homeUC.ChangeUnintTitleInMain("Unit " + units[4].Number + ": " + units[4].Title);
+                        break;
+                    }
+                case 6:
+                    {
+                        Global.Instance.homeUC.ChangeUnintTitleInMain("Unit " + units[5].Number + ": " + units[5].Title);
+                        break;
+                    }
+                case 7:
+                    {
+                        Global.Instance.homeUC.ChangeUnintTitleInMain("Unit " + units[6].Number + ": " + units[6].Title);
+                        break;
+                    }
+                case 8:
+                    {
+                        Global.Instance.homeUC.ChangeUnintTitleInMain("Unit " + units[7].Number + ": " + units[7].Title);
+                        break;
+                    }
+                default:
+                    break;
+            }
         }
         private void lblActivity_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -450,96 +467,66 @@ namespace GameLearnEnlish.UserControls
                             break;
                     }
                 }
-                else if (ButtonSelect == SelectElementUC._imgBt_AS)//Nếu nút nhấn là AS
-                {
-                    switch (nameTbl.Name)
-                    {
-                        case "lblActivity1":
-                            {
-                                CallChangeActivity(nameTbl.Name, ButtonSelect);// Đổi placard theo unit 
-                                UnitUCActivity(Global.Instance.UnitSelect, nameTbl.Name);//Gọi các UC activity của từng Unit
-                                break;
-                            }
-                        case "lblActivity2":
-                            {
-                                CallChangeActivity(nameTbl.Name, ButtonSelect);// Đổi placard theo unit 
-                                UnitUCActivity(Global.Instance.UnitSelect, nameTbl.Name);//Gọi các UC activity của từng Unit
-                                break;
-                            }
-                        case "lblActivity3":
-                            {
-                                CallChangeActivity(nameTbl.Name, ButtonSelect);// Đổi placard theo unit 
-                                UnitUCActivity(Global.Instance.UnitSelect, nameTbl.Name);//Gọi các UC activity của từng Unit
-                                break;
-                            }
-                        case "lblActivity4":
-                            {
-                                CallChangeActivity(nameTbl.Name, ButtonSelect);// Đổi placard theo unit 
-                                UnitUCActivity(Global.Instance.UnitSelect, nameTbl.Name);//Gọi các UC activity của từng Unit
-                                break;
-                            }
-                        case "lblActivity5":
-                            {
-                                CallChangeActivity(nameTbl.Name, ButtonSelect);// Đổi placard theo unit 
-                                UnitUCActivity(Global.Instance.UnitSelect, nameTbl.Name);//Gọi các UC activity của từng Unit
-                                break;
-                            }
-                        case "lblActivity6":
-                            {
-                                CallChangeActivity(nameTbl.Name, ButtonSelect);// Đổi placard theo unit 
-                                UnitUCActivity(Global.Instance.UnitSelect, nameTbl.Name);//Gọi các UC activity của từng Unit
-                                break;
-                            }
-                        case "lblActivity7":
-                            {
-                                CallChangeActivity(nameTbl.Name, ButtonSelect);// Đổi placard theo unit 
-                                UnitUCActivity(Global.Instance.UnitSelect, nameTbl.Name);//Gọi các UC activity của từng Unit
-                                break;
-                            }
-                        case "lblActivity8":
-                            {
-                                CallChangeActivity(nameTbl.Name, ButtonSelect);// Đổi placard theo unit 
-                                UnitUCActivity(Global.Instance.UnitSelect, nameTbl.Name);//Gọi các UC activity của từng Unit
-                                break;
-                            }
-                        default:
-                            break;
-                    }
-                }
+            }
+        }
 
-                else if (ButtonSelect == SelectElementUC._imgBt_Phonics)//Nếu nút nhấn là Phonics
-                {
-                    switch (nameTbl.Name)
+        public void GotoActivity(int num)
+        {
+            StopVoid();
+            switch (num)
+            {
+                case 1:
                     {
-                        case "lblActivity1":
-                            {
-                                CallChangeActivity(nameTbl.Name, ButtonSelect);// Đổi placard theo unit 
-                                UnitUCActivity(Global.Instance.UnitSelect, nameTbl.Name);//Gọi các UC activity của từng Unit
-                                break;
-                            }
-                        case "lblActivity2":
-                            {
-                                CallChangeActivity(nameTbl.Name, ButtonSelect);// Đổi placard theo unit 
-                                UnitUCActivity(Global.Instance.UnitSelect, nameTbl.Name);//Gọi các UC activity của từng Unit
-                                break;
-                            }
-                        case "lblActivity3":
-                            {
-                                CallChangeActivity(nameTbl.Name, ButtonSelect);// Đổi placard theo unit 
-                                UnitUCActivity(Global.Instance.UnitSelect, nameTbl.Name);//Gọi các UC activity của từng Unit
-                                break;
-                            }
-                        case "lblActivity4":
-                            {
-                                CallChangeActivity(nameTbl.Name, ButtonSelect);// Đổi placard theo unit 
-                                UnitUCActivity(Global.Instance.UnitSelect, nameTbl.Name);//Gọi các UC activity của từng Unit
-                                break;
-                            }
-                        default:
-                            break;
-                    }
-                }
+                        Global.Instance.indexSelectActivity = 1;//Set index chọn lable activity
+                        CallChangeActivity("lblActivity1", ButtonSelect);// Đổi placard theo unit 
+                        UnitUCActivity(Global.Instance.UnitSelect, "lblActivity1");//Gọi các UC activity của từng Unit
 
+                        break;
+                    }
+                case 2:
+                    {
+                        Global.Instance.indexSelectActivity = 2;//Set index chọn lable activity
+                        CallChangeActivity("lblActivity2", ButtonSelect);// Đổi placard theo unit 
+                        UnitUCActivity(Global.Instance.UnitSelect, "lblActivity2");//Gọi các UC activity của từng Unit
+                        break;
+                    }
+                case 3:
+                    {
+                        Global.Instance.indexSelectActivity = 3;//Set index chọn lable activity
+                        CallChangeActivity("lblActivity3", ButtonSelect);// Đổi placard theo unit 
+                        UnitUCActivity(Global.Instance.UnitSelect, "lblActivity3");//Gọi các UC activity của từng Unit
+                        break;
+                    }
+                case 4:
+                    {
+                        Global.Instance.indexSelectActivity = 4;//Set index chọn lable activity
+                        CallChangeActivity("lblActivity4", ButtonSelect);// Đổi placard theo unit 
+                        UnitUCActivity(Global.Instance.UnitSelect, "lblActivity4");//Gọi các UC activity của từng Unit
+                        break;
+                    }
+                case 5:
+                    {
+                        Global.Instance.indexSelectActivity = 5;//Set index chọn lable activity
+                        CallChangeActivity("lblActivity5", ButtonSelect);// Đổi placard theo unit 
+                        UnitUCActivity(Global.Instance.UnitSelect, "lblActivity5");//Gọi các UC activity của từng Unit
+                        break;
+                    }
+                case 6:
+                    {
+                        Global.Instance.indexSelectActivity = 6;//Set index chọn lable activity
+                        CallChangeActivity("lblActivity6", ButtonSelect);// Đổi placard theo unit 
+                        UnitUCActivity(Global.Instance.UnitSelect, "lblActivity6");//Gọi các UC activity của từng Unit
+                        break;
+                    }
+                case 7:
+                    {
+                        Global.Instance.indexSelectActivity = 7;//Set index chọn lable activity
+                        CallChangeActivity("lblActivity7", ButtonSelect);// Đổi placard theo unit 
+                        UnitUCActivity(Global.Instance.UnitSelect, "lblActivity7");//Gọi các UC activity của từng Unit
+                        break;
+                    }
+                default:
+                    break;
             }
         }
     }

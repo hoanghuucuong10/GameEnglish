@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace GameLearnEnlish
+namespace GameLearnEnlish.Utility
 {
-    public class MediaBank
+    class MediaBank
     {
-
         private static MediaBank instance = new MediaBank();
+
         #region MediaBank
         public MediaPlayer media_a = new MediaPlayer();
         public MediaPlayer media_and = new MediaPlayer();
@@ -80,11 +80,79 @@ namespace GameLearnEnlish
         public MediaPlayer media_yay = new MediaPlayer();
         public MediaPlayer media_yes = new MediaPlayer();
         public MediaPlayer media_you = new MediaPlayer();
+
         #endregion
-        //private constructor to avoid client applications to use constructor
         private MediaBank()
         {
             #region MediaBank
+            media_a.Volume = 0;
+            media_and.Volume = 0;
+            media_are.Volume = 0;
+            media_at.Volume = 0;
+            media_baby.Volume = 0;
+            media_balloons.Volume = 0;
+            media_brother.Volume = 0;
+            media_but.Volume = 0;
+            media_carrots.Volume = 0;
+            media_circles.Volume = 0;
+            media_crayon.Volume = 0;
+            media_days.Volume = 0;
+            media_do.Volume = 0;
+            media_doctor.Volume = 0;
+            media_doll.Volume = 0;
+            media_dollhouse.Volume = 0;
+            media_dolls.Volume = 0;
+            media_dont.Volume = 0;
+            media_face.Volume = 0;
+            media_family.Volume = 0;
+            media_find.Volume = 0;
+            media_fish.Volume = 0;
+            media_have.Volume = 0;
+            media_hello.Volume = 0;
+            media_her.Volume = 0;
+            media_hi.Volume = 0;
+            media_hospital.Volume = 0;
+            media_i.Volume = 0;
+            media_is.Volume = 0;
+            media_it.Volume = 0;
+            media_its.Volume = 0;
+            media_know.Volume = 0;
+            media_lets.Volume = 0;
+            media_look.Volume = 0;
+            media_lucy.Volume = 0;
+            media_lunch.Volume = 0;
+            media_milk.Volume = 0;
+            media_mother.Volume = 0;
+            media_my.Volume = 0;
+            media_new.Volume = 0;
+            media_no.Volume = 0;
+            media_nurses.Volume = 0;
+            media_oh.Volume = 0;
+            media_one.Volume = 0;
+            media_picture.Volume = 0;
+            media_play.Volume = 0;
+            media_please.Volume = 0;
+            media_puppet.Volume = 0;
+            media_puppies.Volume = 0;
+            media_school.Volume = 0;
+            media_see.Volume = 0;
+            media_sister.Volume = 0;
+            media_square.Volume = 0;
+            media_surprise.Volume = 0;
+            media_the.Volume = 0;
+            media_they.Volume = 0;
+            media_this.Volume = 0;
+            media_three.Volume = 0;
+            media_too.Volume = 0;
+            media_two.Volume = 0;
+            media_want.Volume = 0;
+            media_we.Volume = 0;
+            media_what.Volume = 0;
+            media_wheres.Volume = 0;
+            media_yay.Volume = 0;
+            media_yes.Volume = 0;
+            media_you.Volume = 0;
+
             media_a.Open(new Uri(@"..\..\media\audio\storytime\audiobank\a.mp3", UriKind.Relative));
             media_and.Open(new Uri(@"..\..\media\audio\storytime\audiobank\and.mp3", UriKind.Relative));
             media_are.Open(new Uri(@"..\..\media\audio\storytime\audiobank\are.mp3", UriKind.Relative));
@@ -153,7 +221,6 @@ namespace GameLearnEnlish
             media_yes.Open(new Uri(@"..\..\media\audio\storytime\audiobank\yes.mp3", UriKind.Relative));
             media_you.Open(new Uri(@"..\..\media\audio\storytime\audiobank\you.mp3", UriKind.Relative));
 
-            //event chay xong thi stop
             media_a.MediaEnded += Media_a_MediaEnded;
             media_and.MediaEnded += Media_a_MediaEnded;
             media_are.MediaEnded += Media_a_MediaEnded;
@@ -230,7 +297,7 @@ namespace GameLearnEnlish
         }
         public static MediaBank getInstance()
         {
-            if(instance==null)
+            if (instance == null)
             {
                 instance = new MediaBank();
             }

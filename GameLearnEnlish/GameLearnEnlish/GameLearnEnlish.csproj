@@ -84,7 +84,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="MediaBank.cs" />
     <Compile Include="UserControls\LoadingUC.xaml.cs">
       <DependentUpon>LoadingUC.xaml</DependentUpon>
     </Compile>
@@ -133,6 +132,7 @@
     <Compile Include="UserControls\UC_StoryTime.xaml.cs">
       <DependentUpon>UC_StoryTime.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utility\MediaBank.cs" />
     <Compile Include="Utility\SelectElementUC.cs" />
     <Compile Include="UserControls\HomeUC.xaml.cs">
       <DependentUpon>HomeUC.xaml</DependentUpon>

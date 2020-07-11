@@ -66,9 +66,25 @@
                 <Image x:Name="Gif6" Stretch="Fill"  Visibility="Hidden" gif:AnimationBehavior.SourceUri="..\media\textures\saosang.gif"   ></Image>
             </Grid>
         </Grid>
+
         <Image x:Name="Votay" Visibility="Hidden" Stretch="Fill" Width="256" Height="256" gif:AnimationBehavior.SourceUri="..\media\textures\global\votay256x256.gif"   ></Image>
 
-        <Image x:Name="ImageCorrect" Visibility="Hidden" Stretch="Fill"  Width="200" Height="200" Panel.ZIndex="100000" Source="..\media\textures\concentration\card_back.png"></Image>
+        <!--<StackPanel Width="auto" Height="auto">
+            <Image x:Name="Votay" Visibility="Visible" Stretch="Fill" Width="256" Height="256" gif:AnimationBehavior.SourceUri="..\media\textures\global\votay256x256.gif"   ></Image>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="BtnPrevious"> quay lại</Button>
+
+                <Button x:Name="BtnReplay">quay lại</Button>
+
+                <Button x:Name="BtnNext">quay lại</Button>
+            </Grid>
+        </StackPanel>-->
+        
     </Grid>
 
 </UserControl>

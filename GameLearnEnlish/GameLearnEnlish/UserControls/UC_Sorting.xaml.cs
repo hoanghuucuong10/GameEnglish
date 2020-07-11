@@ -134,7 +134,7 @@ namespace GameLearnEnlish.UserControls
 
             MediaDescription.Open(new Uri(@"..\..\media\audio\sequence\description.mp3", UriKind.Relative));
             MediaDescription.MediaEnded += MediaDescription_MediaEnded;
-
+            UC_Description.uC_Description.CallTextDescription("Listen and put the picture in the correct box.");
 
             InitializeComponent();
 

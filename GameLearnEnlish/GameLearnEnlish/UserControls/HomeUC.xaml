@@ -168,7 +168,7 @@
                             </Image.Style>
                         </Image>
                     </Canvas>
-                    
+
 
 
                     <Image x:Name="imgVolumeBall" Grid.Row="1" Margin="10" Visibility="Hidden">
@@ -182,7 +182,11 @@
                 </Grid>
             </Grid>
         </Grid>
-
-        <Grid x:Name="grdBackGroud" Background="Black" Opacity="0.3" Visibility="Hidden" Cursor="Arrow"/>
+        <Grid >
+            <Grid x:Name="grdBackGroud" Background="Black" Opacity="0.3" Visibility="Hidden" Cursor="Arrow"/>
+            <StackPanel x:Name="canvasTitle" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <Label x:Name="lbUnit" Content="Unit 1: My Class" Foreground="White" FontSize="18" FontWeight="Bold" Canvas.Bottom="0" ></Label>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EnglishGameModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EnglishGameModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Choice">
           <Key>
             <PropertyRef Name="Id" />
@@ -43,6 +43,9 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Image" Type="varchar" MaxLength="128" />
+          <Property Name="Title" Type="varchar" MaxLength="128" />
+          <Property Name="Voice" Type="varchar" MaxLength="128" />
+          <Property Name="ImageCover" Type="varchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="LookAndFindOfUnit">
           <Key>
@@ -154,6 +157,18 @@
             </Principal>
             <Dependent Role="ChoiceOfUnit">
               <PropertyRef Name="Id_Unit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LookAndFind_LookAndFind">
+          <End Role="LookAndFind" Type="Self.LookAndFind" Multiplicity="1" />
+          <End Role="LookAndFind1" Type="Self.LookAndFind" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="LookAndFind">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LookAndFind1">
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -325,6 +340,10 @@
             <End Role="Unit" EntitySet="Unit" />
             <End Role="ChoiceOfUnit" EntitySet="ChoiceOfUnit" />
           </AssociationSet>
+          <AssociationSet Name="FK_LookAndFind_LookAndFind" Association="Self.FK_LookAndFind_LookAndFind">
+            <End Role="LookAndFind" EntitySet="LookAndFind" />
+            <End Role="LookAndFind1" EntitySet="LookAndFind" />
+          </AssociationSet>
           <AssociationSet Name="FK_LookAndFindOfUnit_LookAndFind" Association="Self.FK_LookAndFindOfUnit_LookAndFind">
             <End Role="LookAndFind" EntitySet="LookAndFind" />
             <End Role="LookAndFindOfUnit" EntitySet="LookAndFindOfUnit" />
@@ -374,11 +393,52 @@
             <End Role="ConcentrationOfUnit" EntitySet="ConcentrationOfUnit" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EnglishGameModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EnglishGameEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Choices" EntityType="EnglishGameModel.Choice" />
+          <EntitySet Name="Concentrations" EntityType="EnglishGameModel.Concentration" />
+          <EntitySet Name="LookAndFinds" EntityType="EnglishGameModel.LookAndFind" />
+          <EntitySet Name="Matchings" EntityType="EnglishGameModel.Matching" />
+          <EntitySet Name="Paintings" EntityType="EnglishGameModel.Painting" />
+          <EntitySet Name="Sortings" EntityType="EnglishGameModel.Sorting" />
+          <EntitySet Name="Storytimes" EntityType="EnglishGameModel.Storytime" />
+          <EntitySet Name="Units" EntityType="EnglishGameModel.Unit" />
+          <AssociationSet Name="FK_LookAndFind_LookAndFind" Association="EnglishGameModel.FK_LookAndFind_LookAndFind">
+            <End Role="LookAndFind" EntitySet="LookAndFinds" />
+            <End Role="LookAndFind1" EntitySet="LookAndFinds" />
+          </AssociationSet>
+          <AssociationSet Name="ChoiceOfUnit" Association="EnglishGameModel.ChoiceOfUnit">
+            <End Role="Choice" EntitySet="Choices" />
+            <End Role="Unit" EntitySet="Units" />
+          </AssociationSet>
+          <AssociationSet Name="ConcentrationOfUnit" Association="EnglishGameModel.ConcentrationOfUnit">
+            <End Role="Unit" EntitySet="Units" />
+            <End Role="Concentration" EntitySet="Concentrations" />
+          </AssociationSet>
+          <AssociationSet Name="LookAndFindOfUnit" Association="EnglishGameModel.LookAndFindOfUnit">
+            <End Role="LookAndFind" EntitySet="LookAndFinds" />
+            <End Role="Unit" EntitySet="Units" />
+          </AssociationSet>
+          <AssociationSet Name="MatchingOfUnit" Association="EnglishGameModel.MatchingOfUnit">
+            <End Role="Matching" EntitySet="Matchings" />
+            <End Role="Unit" EntitySet="Units" />
+          </AssociationSet>
+          <AssociationSet Name="PaintingOfUnit" Association="EnglishGameModel.PaintingOfUnit">
+            <End Role="Painting" EntitySet="Paintings" />
+            <End Role="Unit" EntitySet="Units" />
+          </AssociationSet>
+          <AssociationSet Name="SortingOfUnit" Association="EnglishGameModel.SortingOfUnit">
+            <End Role="Sorting" EntitySet="Sortings" />
+            <End Role="Unit" EntitySet="Units" />
+          </AssociationSet>
+          <AssociationSet Name="StorytimeOfUnit" Association="EnglishGameModel.StorytimeOfUnit">
+            <End Role="Storytime" EntitySet="Storytimes" />
+            <End Role="Unit" EntitySet="Units" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Choice">
           <Key>
             <PropertyRef Name="Id" />
@@ -386,7 +446,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Image" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Voice" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Units" Relationship="Self.ChoiceOfUnit" FromRole="Choice" ToRole="Unit" />
+          <NavigationProperty Name="Units" Relationship="EnglishGameModel.ChoiceOfUnit" FromRole="Choice" ToRole="Unit" />
         </EntityType>
         <EntityType Name="Concentration">
           <Key>
@@ -395,7 +455,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Image" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="Voice" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Units" Relationship="Self.ConcentrationOfUnit" FromRole="Concentration" ToRole="Unit" />
+          <NavigationProperty Name="Units" Relationship="EnglishGameModel.ConcentrationOfUnit" FromRole="Concentration" ToRole="Unit" />
         </EntityType>
         <EntityType Name="LookAndFind">
           <Key>
@@ -403,7 +463,12 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Image" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Units" Relationship="Self.LookAndFindOfUnit" FromRole="LookAndFind" ToRole="Unit" />
+          <Property Name="Title" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Voice" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="ImageCover" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LookAndFind1" Relationship="EnglishGameModel.FK_LookAndFind_LookAndFind" FromRole="LookAndFind" ToRole="LookAndFind1" />
+          <NavigationProperty Name="LookAndFind2" Relationship="EnglishGameModel.FK_LookAndFind_LookAndFind" FromRole="LookAndFind1" ToRole="LookAndFind" />
+          <NavigationProperty Name="Units" Relationship="EnglishGameModel.LookAndFindOfUnit" FromRole="LookAndFind" ToRole="Unit" />
         </EntityType>
         <EntityType Name="Matching">
           <Key>
@@ -412,7 +477,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Image" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Voice" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Units" Relationship="Self.MatchingOfUnit" FromRole="Matching" ToRole="Unit" />
+          <NavigationProperty Name="Units" Relationship="EnglishGameModel.MatchingOfUnit" FromRole="Matching" ToRole="Unit" />
         </EntityType>
         <EntityType Name="Painting">
           <Key>
@@ -423,7 +488,7 @@
           <Property Name="ImagePainted" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="Request" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="Color" Type="Int32" />
-          <NavigationProperty Name="Units" Relationship="Self.PaintingOfUnit" FromRole="Painting" ToRole="Unit" />
+          <NavigationProperty Name="Units" Relationship="EnglishGameModel.PaintingOfUnit" FromRole="Painting" ToRole="Unit" />
         </EntityType>
         <EntityType Name="Sorting">
           <Key>
@@ -432,7 +497,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Image" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="Voice" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Units" Relationship="Self.SortingOfUnit" FromRole="Sorting" ToRole="Unit" />
+          <NavigationProperty Name="Units" Relationship="EnglishGameModel.SortingOfUnit" FromRole="Sorting" ToRole="Unit" />
         </EntityType>
         <EntityType Name="Storytime">
           <Key>
@@ -442,7 +507,7 @@
           <Property Name="Sound" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="Image" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="Text" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Units" Relationship="Self.StorytimeOfUnit" FromRole="Storytime" ToRole="Unit" />
+          <NavigationProperty Name="Units" Relationship="EnglishGameModel.StorytimeOfUnit" FromRole="Storytime" ToRole="Unit" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -457,80 +522,54 @@
           <Property Name="ImageButton" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="ImageButtonOver" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="ImageButtonSel" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Choices" Relationship="Self.ChoiceOfUnit" FromRole="Unit" ToRole="Choice" />
-          <NavigationProperty Name="Concentrations" Relationship="Self.ConcentrationOfUnit" FromRole="Unit" ToRole="Concentration" />
-          <NavigationProperty Name="LookAndFinds" Relationship="Self.LookAndFindOfUnit" FromRole="Unit" ToRole="LookAndFind" />
-          <NavigationProperty Name="Matchings" Relationship="Self.MatchingOfUnit" FromRole="Unit" ToRole="Matching" />
-          <NavigationProperty Name="Paintings" Relationship="Self.PaintingOfUnit" FromRole="Unit" ToRole="Painting" />
-          <NavigationProperty Name="Sortings" Relationship="Self.SortingOfUnit" FromRole="Unit" ToRole="Sorting" />
-          <NavigationProperty Name="Storytimes" Relationship="Self.StorytimeOfUnit" FromRole="Unit" ToRole="Storytime" />
+          <NavigationProperty Name="Choices" Relationship="EnglishGameModel.ChoiceOfUnit" FromRole="Unit" ToRole="Choice" />
+          <NavigationProperty Name="Concentrations" Relationship="EnglishGameModel.ConcentrationOfUnit" FromRole="Unit" ToRole="Concentration" />
+          <NavigationProperty Name="LookAndFinds" Relationship="EnglishGameModel.LookAndFindOfUnit" FromRole="Unit" ToRole="LookAndFind" />
+          <NavigationProperty Name="Matchings" Relationship="EnglishGameModel.MatchingOfUnit" FromRole="Unit" ToRole="Matching" />
+          <NavigationProperty Name="Paintings" Relationship="EnglishGameModel.PaintingOfUnit" FromRole="Unit" ToRole="Painting" />
+          <NavigationProperty Name="Sortings" Relationship="EnglishGameModel.SortingOfUnit" FromRole="Unit" ToRole="Sorting" />
+          <NavigationProperty Name="Storytimes" Relationship="EnglishGameModel.StorytimeOfUnit" FromRole="Unit" ToRole="Storytime" />
         </EntityType>
+        <Association Name="FK_LookAndFind_LookAndFind">
+          <End Type="EnglishGameModel.LookAndFind" Role="LookAndFind" Multiplicity="1" />
+          <End Type="EnglishGameModel.LookAndFind" Role="LookAndFind1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="LookAndFind">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LookAndFind1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="ChoiceOfUnit">
-          <End Role="Choice" Type="Self.Choice" Multiplicity="*" />
-          <End Role="Unit" Type="Self.Unit" Multiplicity="*" />
+          <End Type="EnglishGameModel.Choice" Role="Choice" Multiplicity="*" />
+          <End Type="EnglishGameModel.Unit" Role="Unit" Multiplicity="*" />
         </Association>
         <Association Name="ConcentrationOfUnit">
-          <End Role="Unit" Type="Self.Unit" Multiplicity="*" />
-          <End Role="Concentration" Type="Self.Concentration" Multiplicity="*" />
+          <End Type="EnglishGameModel.Unit" Role="Unit" Multiplicity="*" />
+          <End Type="EnglishGameModel.Concentration" Role="Concentration" Multiplicity="*" />
         </Association>
         <Association Name="LookAndFindOfUnit">
-          <End Role="LookAndFind" Type="Self.LookAndFind" Multiplicity="*" />
-          <End Role="Unit" Type="Self.Unit" Multiplicity="*" />
+          <End Type="EnglishGameModel.LookAndFind" Role="LookAndFind" Multiplicity="*" />
+          <End Type="EnglishGameModel.Unit" Role="Unit" Multiplicity="*" />
         </Association>
         <Association Name="MatchingOfUnit">
-          <End Role="Matching" Type="Self.Matching" Multiplicity="*" />
-          <End Role="Unit" Type="Self.Unit" Multiplicity="*" />
+          <End Type="EnglishGameModel.Matching" Role="Matching" Multiplicity="*" />
+          <End Type="EnglishGameModel.Unit" Role="Unit" Multiplicity="*" />
         </Association>
         <Association Name="PaintingOfUnit">
-          <End Role="Painting" Type="Self.Painting" Multiplicity="*" />
-          <End Role="Unit" Type="Self.Unit" Multiplicity="*" />
+          <End Type="EnglishGameModel.Painting" Role="Painting" Multiplicity="*" />
+          <End Type="EnglishGameModel.Unit" Role="Unit" Multiplicity="*" />
         </Association>
         <Association Name="SortingOfUnit">
-          <End Role="Sorting" Type="Self.Sorting" Multiplicity="*" />
-          <End Role="Unit" Type="Self.Unit" Multiplicity="*" />
+          <End Type="EnglishGameModel.Sorting" Role="Sorting" Multiplicity="*" />
+          <End Type="EnglishGameModel.Unit" Role="Unit" Multiplicity="*" />
         </Association>
         <Association Name="StorytimeOfUnit">
-          <End Role="Storytime" Type="Self.Storytime" Multiplicity="*" />
-          <End Role="Unit" Type="Self.Unit" Multiplicity="*" />
+          <End Type="EnglishGameModel.Storytime" Role="Storytime" Multiplicity="*" />
+          <End Type="EnglishGameModel.Unit" Role="Unit" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="EnglishGameEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Choices" EntityType="Self.Choice" />
-          <EntitySet Name="Concentrations" EntityType="Self.Concentration" />
-          <EntitySet Name="LookAndFinds" EntityType="Self.LookAndFind" />
-          <EntitySet Name="Matchings" EntityType="Self.Matching" />
-          <EntitySet Name="Paintings" EntityType="Self.Painting" />
-          <EntitySet Name="Sortings" EntityType="Self.Sorting" />
-          <EntitySet Name="Storytimes" EntityType="Self.Storytime" />
-          <EntitySet Name="Units" EntityType="Self.Unit" />
-          <AssociationSet Name="ChoiceOfUnit" Association="Self.ChoiceOfUnit">
-            <End Role="Choice" EntitySet="Choices" />
-            <End Role="Unit" EntitySet="Units" />
-          </AssociationSet>
-          <AssociationSet Name="ConcentrationOfUnit" Association="Self.ConcentrationOfUnit">
-            <End Role="Unit" EntitySet="Units" />
-            <End Role="Concentration" EntitySet="Concentrations" />
-          </AssociationSet>
-          <AssociationSet Name="LookAndFindOfUnit" Association="Self.LookAndFindOfUnit">
-            <End Role="LookAndFind" EntitySet="LookAndFinds" />
-            <End Role="Unit" EntitySet="Units" />
-          </AssociationSet>
-          <AssociationSet Name="MatchingOfUnit" Association="Self.MatchingOfUnit">
-            <End Role="Matching" EntitySet="Matchings" />
-            <End Role="Unit" EntitySet="Units" />
-          </AssociationSet>
-          <AssociationSet Name="PaintingOfUnit" Association="Self.PaintingOfUnit">
-            <End Role="Painting" EntitySet="Paintings" />
-            <End Role="Unit" EntitySet="Units" />
-          </AssociationSet>
-          <AssociationSet Name="SortingOfUnit" Association="Self.SortingOfUnit">
-            <End Role="Sorting" EntitySet="Sortings" />
-            <End Role="Unit" EntitySet="Units" />
-          </AssociationSet>
-          <AssociationSet Name="StorytimeOfUnit" Association="Self.StorytimeOfUnit">
-            <End Role="Storytime" EntitySet="Storytimes" />
-            <End Role="Unit" EntitySet="Units" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -540,137 +579,140 @@
           <EntitySetMapping Name="Choices">
             <EntityTypeMapping TypeName="EnglishGameModel.Choice">
               <MappingFragment StoreEntitySet="Choice">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Voice" ColumnName="Voice" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Concentrations">
             <EntityTypeMapping TypeName="EnglishGameModel.Concentration">
               <MappingFragment StoreEntitySet="Concentration">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Voice" ColumnName="Voice" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LookAndFinds">
             <EntityTypeMapping TypeName="EnglishGameModel.LookAndFind">
               <MappingFragment StoreEntitySet="LookAndFind">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ImageCover" ColumnName="ImageCover" />
+                <ScalarProperty Name="Voice" ColumnName="Voice" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Matchings">
             <EntityTypeMapping TypeName="EnglishGameModel.Matching">
               <MappingFragment StoreEntitySet="Matching">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Voice" ColumnName="Voice" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Paintings">
             <EntityTypeMapping TypeName="EnglishGameModel.Painting">
               <MappingFragment StoreEntitySet="Painting">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="ImagePainted" ColumnName="ImagePainted" />
-                <ScalarProperty Name="Request" ColumnName="Request" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Request" ColumnName="Request" />
+                <ScalarProperty Name="ImagePainted" ColumnName="ImagePainted" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sortings">
             <EntityTypeMapping TypeName="EnglishGameModel.Sorting">
               <MappingFragment StoreEntitySet="Sorting">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Voice" ColumnName="Voice" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Storytimes">
             <EntityTypeMapping TypeName="EnglishGameModel.Storytime">
               <MappingFragment StoreEntitySet="Storytime">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Sound" ColumnName="Sound" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Sound" ColumnName="Sound" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Units">
             <EntityTypeMapping TypeName="EnglishGameModel.Unit">
               <MappingFragment StoreEntitySet="Unit">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Number" ColumnName="Number" />
-                <ScalarProperty Name="VoiceUnit" ColumnName="VoiceUnit" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="VoiceTitle" ColumnName="VoiceTitle" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="ImageButton" ColumnName="ImageButton" />
-                <ScalarProperty Name="ImageButtonOver" ColumnName="ImageButtonOver" />
                 <ScalarProperty Name="ImageButtonSel" ColumnName="ImageButtonSel" />
+                <ScalarProperty Name="ImageButtonOver" ColumnName="ImageButtonOver" />
+                <ScalarProperty Name="ImageButton" ColumnName="ImageButton" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="VoiceTitle" ColumnName="VoiceTitle" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="VoiceUnit" ColumnName="VoiceUnit" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="ChoiceOfUnit" TypeName="EnglishGameModel.ChoiceOfUnit" StoreEntitySet="ChoiceOfUnit">
+            <EndProperty Name="Unit">
+              <ScalarProperty Name="Id" ColumnName="Id_Unit" />
+            </EndProperty>
             <EndProperty Name="Choice">
               <ScalarProperty Name="Id" ColumnName="Id_Choice" />
             </EndProperty>
-            <EndProperty Name="Unit">
-              <ScalarProperty Name="Id" ColumnName="Id_Unit" />
-            </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="ConcentrationOfUnit" TypeName="EnglishGameModel.ConcentrationOfUnit" StoreEntitySet="ConcentrationOfUnit">
-            <EndProperty Name="Unit">
-              <ScalarProperty Name="Id" ColumnName="Id_Unit" />
-            </EndProperty>
             <EndProperty Name="Concentration">
               <ScalarProperty Name="Id" ColumnName="Id_Concentration" />
             </EndProperty>
+            <EndProperty Name="Unit">
+              <ScalarProperty Name="Id" ColumnName="Id_Unit" />
+            </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="LookAndFindOfUnit" TypeName="EnglishGameModel.LookAndFindOfUnit" StoreEntitySet="LookAndFindOfUnit">
+            <EndProperty Name="Unit">
+              <ScalarProperty Name="Id" ColumnName="Id_Unit" />
+            </EndProperty>
             <EndProperty Name="LookAndFind">
               <ScalarProperty Name="Id" ColumnName="Id_LookAndFind" />
             </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="MatchingOfUnit" TypeName="EnglishGameModel.MatchingOfUnit" StoreEntitySet="MatchingOfUnit">
             <EndProperty Name="Unit">
               <ScalarProperty Name="Id" ColumnName="Id_Unit" />
             </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="MatchingOfUnit" TypeName="EnglishGameModel.MatchingOfUnit" StoreEntitySet="MatchingOfUnit">
             <EndProperty Name="Matching">
               <ScalarProperty Name="Id" ColumnName="Id_Matching" />
             </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="PaintingOfUnit" TypeName="EnglishGameModel.PaintingOfUnit" StoreEntitySet="PaintingOfUnit">
             <EndProperty Name="Unit">
               <ScalarProperty Name="Id" ColumnName="Id_Unit" />
             </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="PaintingOfUnit" TypeName="EnglishGameModel.PaintingOfUnit" StoreEntitySet="PaintingOfUnit">
             <EndProperty Name="Painting">
               <ScalarProperty Name="Id" ColumnName="Id_Painting" />
             </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SortingOfUnit" TypeName="EnglishGameModel.SortingOfUnit" StoreEntitySet="SortingOfUnit">
             <EndProperty Name="Unit">
               <ScalarProperty Name="Id" ColumnName="Id_Unit" />
             </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="SortingOfUnit" TypeName="EnglishGameModel.SortingOfUnit" StoreEntitySet="SortingOfUnit">
             <EndProperty Name="Sorting">
               <ScalarProperty Name="Id" ColumnName="Id_Sorting" />
             </EndProperty>
-            <EndProperty Name="Unit">
-              <ScalarProperty Name="Id" ColumnName="Id_Unit" />
-            </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="StorytimeOfUnit" TypeName="EnglishGameModel.StorytimeOfUnit" StoreEntitySet="StorytimeOfUnit">
-            <EndProperty Name="Storytime">
-              <ScalarProperty Name="Id" ColumnName="Id_Storytime" />
-            </EndProperty>
             <EndProperty Name="Unit">
               <ScalarProperty Name="Id" ColumnName="Id_Unit" />
+            </EndProperty>
+            <EndProperty Name="Storytime">
+              <ScalarProperty Name="Id" ColumnName="Id_Storytime" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

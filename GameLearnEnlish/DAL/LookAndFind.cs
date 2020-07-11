@@ -22,7 +22,12 @@ namespace DAL
     
         public int Id { get; set; }
         public string Image { get; set; }
+        public string Title { get; set; }
+        public string Voice { get; set; }
+        public string ImageCover { get; set; }
     
+        public virtual LookAndFind LookAndFind1 { get; set; }
+        public virtual LookAndFind LookAndFind2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Unit> Units { get; set; }
     }
